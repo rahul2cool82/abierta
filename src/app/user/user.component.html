@@ -1,0 +1,154 @@
+<div [classList]="'user module'">
+  <ng-template [ngIf]="( currentFunctionality === 'showTable' )">
+    <header [classList]="'user__header'">
+      <button [classList]="'user__header--button'" (click)="changeFunctionality('addUser')">Add new user</button>
+      <div [classList]="'user__header--searchBox'">
+        <input type="text" [classList]="'user__header--searchTextBox'" placeholder="Search here">
+        <svg [classList]="'user__header--searchIcon'">
+          <use href="assets/search.svg#Layer_1"></use>
+        </svg>
+      </div>
+    </header>
+
+    <div [classList]="'user__tableContainer'">
+
+      <table [classList]="'user__table'">
+        <thead>
+        <tr>
+          <td>Name</td>
+          <td>Username</td>
+          <td>Email</td>
+          <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
+            <td>Action</td>
+          </ng-template>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" value="Demo Name" disabled [classList]="'name'"></td>
+            <td><input type="text" value="Demo Name" disabled [classList]="'username'"></td>
+            <td><input type="email" value="sa@example.com" disabled [classList]="'email'"></td>
+            <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
+              <td>
+                <div [classList]="'user__table--actionContainer'">
+                  <div [classList]="'user__table--functionBox'">
+                    <svg [classList]="'user__table--svg'">
+                      <use href="assets/edit.svg#Layer_1"></use>
+                    </svg>
+                    <p>Edt</p>
+                  </div>
+                  <div [classList]="'user__table--functionBox'">
+                    <svg [classList]="'user__table--svg'">
+                      <use href="assets/delete.svg#Layer_1"></use>
+                    </svg>
+                    <p>Dlt</p>
+                  </div>
+                  <div [classList]="'user__table--functionBox'">
+                    <input type="checkbox" [classList]="'user__table--checkBox'">
+                  </div>
+                </div>
+              </td>
+            </ng-template>
+          </tr>
+        </tbody>
+      </table>
+
+      <footer [classList]="'user__tableContainer--footer'">
+        <div [classList]="'user__tableContainer--footerPageDescBox'">
+          <p [classList]="'user__tableContainer--footerPageDesc'">
+            Showing <span #from>1</span> to <span #to>8</span> of <span #total>50</span> entries
+          </p>
+        </div>
+        <div [classList]="'user__tableContainer--footerPageIndexing'">
+          <p [classList]="'user__tableContainer--footerPageTab'">prev</p>
+          <div [classList]="'user__tableContainer--footerPageIndexes'">
+            <p [classList]="'user__tableContainer--footerPageTab select'">1</p>
+            <p [classList]="'user__tableContainer--footerPageTab'">2</p>
+            <p [classList]="'user__tableContainer--footerPageTab'">3</p>
+            <p [classList]="'user__tableContainer--footerPageTab'">4</p>
+            <p [classList]="'user__tableContainer--footerPageTab'">5</p>
+          </div>
+          <p [classList]="'user__tableContainer--footerPageTab'">next</p>
+        </div>
+      </footer>
+
+    </div>
+
+  </ng-template>
+  <ng-template [ngIf]="( currentFunctionality === 'addUser' && userType !== 'u' )">
+    <form [classList]="'user__form'">
+      <header [classList]="'user__form--header'">
+        <div [classList]="'user__form--headerCreateBox'">
+          <p [classList]="'user__form--headerParagraph'">Create Account</p>
+          <img src="assets/create_ac_dropdown.svg" [classList]="'user__form--headerImage'">
+        </div>
+        <div [classList]="'user__form--headerSelectUserBox select'">
+          <div [classList]="'user__form--headerUserBox'">
+            <img [classList]="'user__form--headerUserIcon'" src="assets/user_ac.svg">
+            <p [classList]="'user__form--headerUsertype'">User Account</p>
+          </div>
+          <ng-template [ngIf]="( userType === 'sa' )">
+            <div [classList]="'user__form--headerUserBox'">
+              <img [classList]="'user__form--headerUserIcon'" src="assets/admin_ac.svg">
+              <p [classList]="'user__form--headerUsertype'">Admin Account</p>
+            </div>
+          </ng-template>
+        </div>
+      </header>
+
+      <p [classList]="'user__form--title'">Role</p>
+      <div [classList]="'user__form--inputBox'">
+        <div [classList]="'user__form--inputImageBox'">
+          <img src="assets/role.svg" [classList]="'user__form--inputImage'">
+        </div>
+        <input type="text" [classList]="'user__form--input'" disabled value="{{newUser?.userType === 'a' ? 'admin' : 'user'}}">
+      </div>
+
+      <p [classList]="'user__form--title'">Name</p>
+      <div [classList]="'user__form--inputBox'">
+        <div [classList]="'user__form--inputImageBox'">
+          <img src="assets/name.svg" [classList]="'user__form--inputImage'">
+        </div>
+        <input type="text" [classList]="'user__form--input'" placeholder="Enter your name" #name required>
+      </div>
+
+      <p [classList]="'user__form--title'">Username</p>
+      <div [classList]="'user__form--inputBox'">
+        <div [classList]="'user__form--inputImageBox'">
+          <img src="assets/username.svg" [classList]="'user__form--inputImage'">
+        </div>
+        <input type="text" [classList]="'user__form--input'" placeholder="Enter username" #userName required>
+      </div>
+
+      <p [classList]="'user__form--title'">Email</p>
+      <div [classList]="'user__form--inputBox'">
+        <div [classList]="'user__form--inputImageBox'">
+          <img src="assets/email.svg" [classList]="'user__form--inputImage'">
+        </div>
+        <input type="email" [classList]="'user__form--input'" placeholder="Enter your email" #email required>
+      </div>
+
+      <p [classList]="'user__form--title'">Password</p>
+      <div [classList]="'user__form--inputBox'">
+        <div [classList]="'user__form--inputImageBox'">
+          <img src="assets/password.svg" [classList]="'user__form--inputImage'">
+        </div>
+        <input type="password" [classList]="'user__form--input'" placeholder="Enter password" #password required>
+      </div>
+
+      <p [classList]="'user__form--title'">Confirm Password</p>
+      <div [classList]="'user__form--inputBox'">
+        <div [classList]="'user__form--inputImageBox'">
+          <img src="assets/re_enter_pwd.svg" [classList]="'user__form--inputImage'">
+        </div>
+        <input type="password" [classList]="'user__form--input'" placeholder="Confirm password" #confirmPassword required>
+      </div>
+
+      <div [classList]="'user__form--buttonBox'">
+        <button type="submit" [classList]="'user__form--button'" (click)="createAccount($event, name.value, userName.value, email.value, password.value, confirmPassword.value)">Register</button>
+        <button type="submit" [classList]="'user__form--button'" (click)="changeFunctionality('showTable')">Cancel</button>
+      </div>
+
+    </form>
+  </ng-template>
+</div>

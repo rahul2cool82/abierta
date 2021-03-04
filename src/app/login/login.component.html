@@ -1,0 +1,52 @@
+<div [classList]="'login'">
+  <div [classList]="'login__left'">
+    <p [classList]="'login__left--topHeading'">
+      AbiertaSys Recruitment
+    </p>
+    <div [classList]="'login__left--container'">
+      <p [classList]="'login__left--containerTitle'">
+        Welcome to the login page of
+        AbiertaSys Recruitment
+      </p>
+      <h4 [classList]="'login__left--containerHeading'">
+        Bringing to you
+        the world of automation
+      </h4>
+    </div>
+  </div>
+  <div [classList]="'login__right'">
+    <p [classList]="'login__right--top'">
+      Contact sales: <a href="mailto:info@abiertasys.com">info@abiertasys.com</a>
+    </p>
+    <p [classList]="'login__right--heading'">
+      Recruitment Soft
+    </p>
+    <form [classList]="'login__right--form'">
+      <p [classList]="'login__right--formHeading'">
+        Login
+      </p>
+      <p [classList]="'login__right--formSubHeading'">
+        Sign In to your account
+      </p>
+      <p [classList]="'login__right--formTitle'">
+        Username
+      </p>
+      <div [classList]="'login__right--formTextBox'">
+        <svg [classList]="'login__right--formSvg'">
+          <use href="#"></use>
+        </svg>
+        <input type="text" [classList]="'login__right--formText'" placeholder="Enter your username" #userName>
+      </div>
+      <p [classList]="'login__right--formTitle'">
+        Password
+      </p>
+      <div [classList]="'login__right--formTextBox'">
+        <svg [classList]="'login__right--formSvg'">
+          <use href="#"></use>
+        </svg>
+        <input type="password" [classList]="'login__right--formText'" placeholder="Password" #password>
+      </div>
+      <button type="submit" [classList]="'login__right--formButton'" (click)="loginUser($event,userName.value,password.value)">SignIn</button>
+    </form>
+  </div>
+</div>

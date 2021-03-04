@@ -1,0 +1,59 @@
+<ng-template [ngIf]="( currentScreen === 'login' )">
+  <app-login></app-login>
+</ng-template>
+
+<ng-template [ngIf]="( currentScreen === 'dashboard' )">
+  <header [classList]="'header'">
+    <div [classList]="'header__userBox'">
+      <p [classList]="'header__userBox--userName'">Amit Vyas</p>
+      <img [classList]="'header__userBox--svg'" src="assets/create_ac_dropdown_png.png">
+    </div>
+  </header>
+  <div [classList]="'container'">
+    <!-- ###########################      SIDEBAR        ######################################### -->
+    <section [classList]="'sidebar'">
+      <div [classList]="'sidebar__imageBox'">
+        <img src="#" [classList]="'sidebar__imageBox--image'">
+      </div>
+      <div [classList]="'sidebar__module firstChild'" (click)="changeModule('dashboard')">
+        <svg [classList]="'sidebar__module--svg'">
+          <use href="assets/dashboard.svg#Layer_1"></use>
+        </svg>
+        <p>Dashboard</p>
+      </div>
+      <div [classList]="'sidebar__module'" (click)="changeModule('user')">
+        <svg [classList]="'sidebar__module--svg'">
+          <use href="assets/user.svg#Layer_1"></use>
+        </svg>
+        <p>User</p>
+      </div>
+      <div [classList]="'sidebar__module'" (click)="changeModule('configuration')">
+        <svg [classList]="'sidebar__module--svg'">
+          <use href="assets/configuration.svg#Layer_1"></use>
+        </svg>
+        <p>Configuration</p>
+      </div>
+      <div [classList]="'sidebar__module'" (click)="changeModule('jacket')">
+        <svg [classList]="'sidebar__module--svg'">
+          <use href="assets/jacket.svg#Layer_1"></use>
+        </svg>
+        <p>Jacket</p>
+      </div>
+    </section>
+    <!-- ###########################      MODULE        ######################################### -->
+    <section [classList]="'moduleContainer'">
+      <ng-template [ngIf]="( currentModule === 'dashboard' )">
+        <app-dashboard [userType]="userType"></app-dashboard>
+      </ng-template>
+      <ng-template [ngIf]="( currentModule === 'user' )">
+        <app-user [userType]="userType" [usersList]="usersList"></app-user>
+      </ng-template>
+      <ng-template [ngIf]="( currentModule === 'configuration' )">
+        <app-configuration [userType]="userType"></app-configuration>
+      </ng-template>
+      <ng-template [ngIf]="( currentModule === 'jacket' )">
+        <app-jacket [userType]="userType"></app-jacket>
+      </ng-template>
+    </section>
+  </div>
+</ng-template>
