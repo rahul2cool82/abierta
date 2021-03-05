@@ -144,12 +144,16 @@
       }
     }
 
+    &--checkBoxTd{
+      width: 1%;
+      padding: calc(.5vh + .7vw) 1.5vw;
+    }
+
     &--actionContainer{
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 0.5vh 1vw;
-      width: max-content;
     }
 
     &--functionBox{
@@ -171,9 +175,8 @@
     }
 
     &--svg{
-      height: 1.5vw;
-      width: 1.5vw;
-      background-color: red;
+      height: 1vw;
+      width: 1vw;
     }
 
     &--checkBox{

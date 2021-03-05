@@ -1,7 +1,9 @@
-<div [classList]="'jacket module select'">
+<div [classList]="'jacket module'">
   <ng-template [ngIf]="( currentFunctionality === 'showTable' )">
     <header [classList]="'jacket__header'">
-      <button [classList]="'jacket__header--button'" (click)="changeFunctionality('addjacket')">Add new jacket</button>
+      <button [classList]="'jacket__header--button delete'">Delete jacket</button>
+      <button [classList]="'jacket__header--button'" (click)="changeFunctionality('addJacket')">Add jacket</button>
+      <button [classList]="'jacket__header--button'" (click)="changeFunctionality('verifyJacket')">Verify jacket</button>
       <div [classList]="'jacket__header--searchBox'">
         <input type="text" [classList]="'jacket__header--searchTextBox'" placeholder="Search here">
         <svg [classList]="'jacket__header--searchIcon'">
@@ -13,46 +15,30 @@
     <div [classList]="'jacket__tableContainer'">
       <table [classList]="'jacket__table'">
         <thead>
-        <tr>
-          <td>Name</td>
-          <td>jacketname</td>
-          <td>Email</td>
-          <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
-            <td>Action</td>
-          </ng-template>
-        </tr>
+          <tr>
+            <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
+              <td [classList]="'jacket__table--checkBoxTd'">
+                <input type="checkbox" [classList]="'jacket__table--checkBox valuable'">
+              </td>
+            </ng-template>
+            <td>Jacket No.</td>
+            <td>RF ID1</td>
+            <td>RF ID2</td>
+            <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
+              <td>Action</td>
+            </ng-template>
+          </tr>
         </thead>
         <tbody>
-        <tr>
-          <td><input type="text" value="Demo Name" disabled [classList]="'name'"></td>
-          <td><input type="text" value="Demo Name" disabled [classList]="'jacketname'"></td>
-          <td><input type="email" value="sa@example.com" disabled [classList]="'email'"></td>
+          <tr>
           <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
-            <td>
-              <div [classList]="'jacket__table--actionContainer'">
-                <div [classList]="'jacket__table--functionBox'">
-                  <svg [classList]="'jacket__table--svg'">
-                    <use href="assets/edit.svg#Layer_1"></use>
-                  </svg>
-                  <p>Edt</p>
-                </div>
-                <div [classList]="'jacket__table--functionBox'">
-                  <svg [classList]="'jacket__table--svg'">
-                    <use href="assets/delete.svg#Layer_1"></use>
-                  </svg>
-                  <p>Dlt</p>
-                </div>
-                <div [classList]="'jacket__table--functionBox'">
-                  <input type="checkbox" [classList]="'jacket__table--checkBox'">
-                </div>
-              </div>
+            <td [classList]="'jacket__table--checkBoxTd'">
+              <input type="checkbox" [classList]="'jacket__table--checkBox valuable'">
             </td>
           </ng-template>
-        </tr>
-        <tr>
-          <td><input type="text" value="Demo Name" disabled [classList]="'name'"></td>
-          <td><input type="text" value="Demo Name" disabled [classList]="'jacketname'"></td>
-          <td><input type="email" value="sa@example.com" disabled [classList]="'email'"></td>
+          <td><input type="text" value="Demo Number" disabled [classList]="'number'"></td>
+          <td><input type="text" value="Demo Rf Id1" disabled [classList]="'id1'"></td>
+          <td><input type="text" value="Demo Rf Id2" disabled [classList]="'id2'"></td>
           <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
             <td>
               <div [classList]="'jacket__table--actionContainer'">
@@ -67,165 +53,6 @@
                     <use href="assets/delete.svg#Layer_1"></use>
                   </svg>
                   <p>Dlt</p>
-                </div>
-                <div [classList]="'jacket__table--functionBox'">
-                  <input type="checkbox" [classList]="'jacket__table--checkBox'">
-                </div>
-              </div>
-            </td>
-          </ng-template>
-        </tr>
-        <tr>
-          <td><input type="text" value="Demo Name" disabled [classList]="'name'"></td>
-          <td><input type="text" value="Demo Name" disabled [classList]="'jacketname'"></td>
-          <td><input type="email" value="sa@example.com" disabled [classList]="'email'"></td>
-          <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
-            <td>
-              <div [classList]="'jacket__table--actionContainer'">
-                <div [classList]="'jacket__table--functionBox'">
-                  <svg [classList]="'jacket__table--svg'">
-                    <use href="assets/edit.svg#Layer_1"></use>
-                  </svg>
-                  <p>Edt</p>
-                </div>
-                <div [classList]="'jacket__table--functionBox'">
-                  <svg [classList]="'jacket__table--svg'">
-                    <use href="assets/delete.svg#Layer_1"></use>
-                  </svg>
-                  <p>Dlt</p>
-                </div>
-                <div [classList]="'jacket__table--functionBox'">
-                  <input type="checkbox" [classList]="'jacket__table--checkBox'">
-                </div>
-              </div>
-            </td>
-          </ng-template>
-        </tr>
-        <tr>
-          <td><input type="text" value="Demo Name" disabled [classList]="'name'"></td>
-          <td><input type="text" value="Demo Name" disabled [classList]="'jacketname'"></td>
-          <td><input type="email" value="sa@example.com" disabled [classList]="'email'"></td>
-          <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
-            <td>
-              <div [classList]="'jacket__table--actionContainer'">
-                <div [classList]="'jacket__table--functionBox'">
-                  <svg [classList]="'jacket__table--svg'">
-                    <use href="assets/edit.svg#Layer_1"></use>
-                  </svg>
-                  <p>Edt</p>
-                </div>
-                <div [classList]="'jacket__table--functionBox'">
-                  <svg [classList]="'jacket__table--svg'">
-                    <use href="assets/delete.svg#Layer_1"></use>
-                  </svg>
-                  <p>Dlt</p>
-                </div>
-                <div [classList]="'jacket__table--functionBox'">
-                  <input type="checkbox" [classList]="'jacket__table--checkBox'">
-                </div>
-              </div>
-            </td>
-          </ng-template>
-        </tr>
-        <tr>
-          <td><input type="text" value="Demo Name" disabled [classList]="'name'"></td>
-          <td><input type="text" value="Demo Name" disabled [classList]="'jacketname'"></td>
-          <td><input type="email" value="sa@example.com" disabled [classList]="'email'"></td>
-          <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
-            <td>
-              <div [classList]="'jacket__table--actionContainer'">
-                <div [classList]="'jacket__table--functionBox'">
-                  <svg [classList]="'jacket__table--svg'">
-                    <use href="assets/edit.svg#Layer_1"></use>
-                  </svg>
-                  <p>Edt</p>
-                </div>
-                <div [classList]="'jacket__table--functionBox'">
-                  <svg [classList]="'jacket__table--svg'">
-                    <use href="assets/delete.svg#Layer_1"></use>
-                  </svg>
-                  <p>Dlt</p>
-                </div>
-                <div [classList]="'jacket__table--functionBox'">
-                  <input type="checkbox" [classList]="'jacket__table--checkBox'">
-                </div>
-              </div>
-            </td>
-          </ng-template>
-        </tr>
-        <tr>
-          <td><input type="text" value="Demo Name" disabled [classList]="'name'"></td>
-          <td><input type="text" value="Demo Name" disabled [classList]="'jacketname'"></td>
-          <td><input type="email" value="sa@example.com" disabled [classList]="'email'"></td>
-          <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
-            <td>
-              <div [classList]="'jacket__table--actionContainer'">
-                <div [classList]="'jacket__table--functionBox'">
-                  <svg [classList]="'jacket__table--svg'">
-                    <use href="assets/edit.svg#Layer_1"></use>
-                  </svg>
-                  <p>Edt</p>
-                </div>
-                <div [classList]="'jacket__table--functionBox'">
-                  <svg [classList]="'jacket__table--svg'">
-                    <use href="assets/delete.svg#Layer_1"></use>
-                  </svg>
-                  <p>Dlt</p>
-                </div>
-                <div [classList]="'jacket__table--functionBox'">
-                  <input type="checkbox" [classList]="'jacket__table--checkBox'">
-                </div>
-              </div>
-            </td>
-          </ng-template>
-        </tr>
-        <tr>
-          <td><input type="text" value="Demo Name" disabled [classList]="'name'"></td>
-          <td><input type="text" value="Demo Name" disabled [classList]="'jacketname'"></td>
-          <td><input type="email" value="sa@example.com" disabled [classList]="'email'"></td>
-          <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
-            <td>
-              <div [classList]="'jacket__table--actionContainer'">
-                <div [classList]="'jacket__table--functionBox'">
-                  <svg [classList]="'jacket__table--svg'">
-                    <use href="assets/edit.svg#Layer_1"></use>
-                  </svg>
-                  <p>Edt</p>
-                </div>
-                <div [classList]="'jacket__table--functionBox'">
-                  <svg [classList]="'jacket__table--svg'">
-                    <use href="assets/delete.svg#Layer_1"></use>
-                  </svg>
-                  <p>Dlt</p>
-                </div>
-                <div [classList]="'jacket__table--functionBox'">
-                  <input type="checkbox" [classList]="'jacket__table--checkBox'">
-                </div>
-              </div>
-            </td>
-          </ng-template>
-        </tr>
-        <tr>
-          <td><input type="text" value="Demo Name" disabled [classList]="'name'"></td>
-          <td><input type="text" value="Demo Name" disabled [classList]="'jacketname'"></td>
-          <td><input type="email" value="sa@example.com" disabled [classList]="'email'"></td>
-          <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
-            <td>
-              <div [classList]="'jacket__table--actionContainer'">
-                <div [classList]="'jacket__table--functionBox'">
-                  <svg [classList]="'jacket__table--svg'">
-                    <use href="assets/edit.svg#Layer_1"></use>
-                  </svg>
-                  <p>Edt</p>
-                </div>
-                <div [classList]="'jacket__table--functionBox'">
-                  <svg [classList]="'jacket__table--svg'">
-                    <use href="assets/delete.svg#Layer_1"></use>
-                  </svg>
-                  <p>Dlt</p>
-                </div>
-                <div [classList]="'jacket__table--functionBox'">
-                  <input type="checkbox" [classList]="'jacket__table--checkBox'">
                 </div>
               </div>
             </td>
@@ -254,7 +81,81 @@
     </div>
 
   </ng-template>
-  <ng-template [ngIf]="( currentFunctionality === 'addjacket' && userType !== 'u' )">
 
+  <ng-template [ngIf]="( currentFunctionality === 'addJacket' && userType !== 'u' )">
+      <form [classList]="'jacket__form'">
+        <header [classList]="'jacket__form--header'">
+          <p [classList]="'jacket__form--headerHeading'">Add Jacket</p>
+          <p [classList]="'jacket__form--headerTitle'">Jacket No.</p>
+          <div [classList]="'jacket__form--headerTextBox'">
+            <input [classList]="'jacket__form--headerText'" #addJacketNumber>
+            <svg [classList]="'jacket__form--headerSvg'">
+              <use href="assets/see.svg#Layer_1"></use>
+            </svg>
+          </div>
+        </header>
+        <div [classList]="'jacket__form--container'">
+          <div [classList]="'jacket__form--subContainer'">
+            <p [classList]="'jacket__form--readAntenna'">
+              Read Antenna
+            </p>
+            <div [classList]="'jacket__form--textBox'">
+              <p [classList]="'jacket__form--textTitle'">
+                Rf ID 1
+              </p>
+              <input type="text" [classList]="'jacket__form--text'" #addRfId1>
+            </div>
+            <div [classList]="'jacket__form--textBox'">
+              <p [classList]="'jacket__form--textTitle'">
+                Rf ID 2
+              </p>
+              <input type="text" [classList]="'jacket__form--text'" #addRfId2>
+            </div>
+            <div [classList]="'jacket__form--buttons'">
+              <button [classList]="'jacket__form--button'" type="submit">Submit</button>
+              <button [classList]="'jacket__form--button cancel'" (click)="changeFunctionality('showTable')">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </form>
   </ng-template>
+
+  <ng-template [ngIf]="( currentFunctionality === 'verifyJacket' )">
+    <form [classList]="'jacket__form'">
+      <header [classList]="'jacket__form--header'">
+        <p [classList]="'jacket__form--headerHeading'">Verify Jacket</p>
+        <p [classList]="'jacket__form--headerTitle'">Jacket No.</p>
+        <div [classList]="'jacket__form--headerTextBox'">
+          <input [classList]="'jacket__form--headerText'" #verifyJacketNumber>
+          <svg [classList]="'jacket__form--headerSvg'">
+            <use href="assets/see.svg#Layer_1"></use>
+          </svg>
+        </div>
+      </header>
+      <div [classList]="'jacket__form--container'">
+        <div [classList]="'jacket__form--subContainer'">
+          <p [classList]="'jacket__form--readAntenna'">
+            Read Antenna
+          </p>
+          <div [classList]="'jacket__form--textBox'">
+            <p [classList]="'jacket__form--textTitle'">
+              Rf ID 1
+            </p>
+            <input type="text" [classList]="'jacket__form--text'" #verifyRfId1>
+          </div>
+          <div [classList]="'jacket__form--textBox'">
+            <p [classList]="'jacket__form--textTitle'">
+              Rf ID 2
+            </p>
+            <input type="text" [classList]="'jacket__form--text'" #verifyRfId2>
+          </div>
+          <div [classList]="'jacket__form--buttons'">
+            <button [classList]="'jacket__form--button'" type="submit">Submit</button>
+            <button [classList]="'jacket__form--button cancel'" (click)="changeFunctionality('showTable')">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+
 </div>

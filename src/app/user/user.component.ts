@@ -28,7 +28,6 @@ export class UserComponent implements OnInit {
   //
   ngOnInit(): void {
     this.newUser = new User();
-    this.newUser.userType = 'u';
     for ( let i = 0 ; i < this.usersList.length ; i++ ){
       this.pageIndexes[i] = i;
       this.totalIndex = this.totalIndex + this.usersList[i].length;
@@ -55,7 +54,7 @@ export class UserComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  createAccount($event: any, name: string, userName: string, email: string, password: string, confirmPassword: string){
+  createAccount($event: any, name: string, userName: string, email: string, password: string, confirmPassword: string, role: string){
     $event.preventDefault();
     // tslint:disable-next-line:max-line-length
     if ( name.length === 0 || name.length === 0 || userName.length === 0 || email.length === 0 || password.length === 0 || confirmPassword.length === 0 ){
@@ -74,6 +73,8 @@ export class UserComponent implements OnInit {
     this.newUser?.email = email;
     // @ts-ignore
     this.newUser?.password = password;
+    // @ts-ignore
+    this.newUser?.userType = role;
 
     this._service_api.postCreateAccount(this.newUser)
       .subscribe(

@@ -26,7 +26,6 @@ export class AppComponent {
   // exchangeable variables
   userType = 'sa';
   usersList = [];
-
   // global screen variables
   currentScreen = 'dashboard';
   currentModule = '';

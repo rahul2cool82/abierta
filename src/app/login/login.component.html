@@ -1,5 +1,5 @@
 <div [classList]="'login'">
-  <div [classList]="'login__left'">
+  <div [classList]="'login__left'" style="background-image: url(assets/left_bg-01.png);">
     <p [classList]="'login__left--topHeading'">
       AbiertaSys Recruitment
     </p>
@@ -14,7 +14,7 @@
       </h4>
     </div>
   </div>
-  <div [classList]="'login__right'">
+  <div [classList]="'login__right'" style="background-image: url(assets/right_bg-01.png);">
     <p [classList]="'login__right--top'">
       Contact sales: <a href="mailto:info@abiertasys.com">info@abiertasys.com</a>
     </p>
@@ -33,7 +33,7 @@
       </p>
       <div [classList]="'login__right--formTextBox'">
         <svg [classList]="'login__right--formSvg'">
-          <use href="#"></use>
+          <use href="assets/username.svg#Layer_1"></use>
         </svg>
         <input type="text" [classList]="'login__right--formText'" placeholder="Enter your username" #userName>
       </div>
@@ -42,7 +42,7 @@
       </p>
       <div [classList]="'login__right--formTextBox'">
         <svg [classList]="'login__right--formSvg'">
-          <use href="#"></use>
+          <use href="assets/password.svg#Layer_1"></use>
         </svg>
         <input type="password" [classList]="'login__right--formText'" placeholder="Password" #password>
       </div>

@@ -9,8 +9,9 @@
     padding: 2vw;
     display: flex;
     flex-direction: column;
-    background-color: darkblue;
     color: #fff;
+    background-size: cover;
+    background-position: center center;
     &--topHeading{
       font-size: 1.8vw;
       font-weight: 500;
@@ -32,9 +33,10 @@
     }
   }
   &__right{
-    background-color: yellow;
     padding: 2vw;
     padding-left: 8vw;
+    background-size: cover;
+    background-position: center center;
     &--top{
       text-align: right;
       font-size: 1vw;
@@ -46,33 +48,38 @@
     &--heading{
       margin-top: 10vh;
       font-size: 4vw;
+      color: #1A5072;
       font-weight: bold;
     }
     &--form{
       margin-top: 4vh;
       &Heading{
         font-size: 2.5vw;
-        font-weight: 400;
+        font-weight: 300;
       }
       &SubHeading{
         margin-top: 2vh;
         font-size: 2vw;
         margin-bottom: 3vh;
+        font-weight: 300;
       }
       &Title{
-          margin-top: 3vh;
-          font-size: 1.5vw;
+        font-weight: 300;
+        margin-top: 3vh;
+        font-size: 1.5vw;
       }
       &TextBox{
         display: flex;
         width: 25vw;
         overflow: hidden;
-        background-color: red;
         margin-top: 1vh;
+        border-top-left-radius: 0.5vw;
+        border-bottom-left-radius: 0.5vw;
       }
       &Svg{
         height: 3vw;
         width: 3vw;
+        background-color: #AAAAAA;
       }
       &Text{
         height: 3vw;
@@ -80,6 +87,11 @@
         font-size: 1vw;
         font-weight: 300;
         padding-left: 1.5vw;
+        border-top-right-radius: 0.5vw;
+        border-bottom-right-radius: 0.5vw;
+        outline: none;
+        border: 0.05vw solid #AAAAAA;
+        overflow: hidden;
         &:focus{
           outline: none;
         }
@@ -91,6 +103,9 @@
         outline: none;
         padding: 0.8vw 1.5vw;
         border: 0;
+        cursor: pointer;
+        background-color: #1A5072;
+        color: #fff;
       }
     }
   }

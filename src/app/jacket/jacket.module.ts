@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { JacketComponent } from './jacket.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -10,7 +11,8 @@ import { JacketComponent } from './jacket.component';
         JacketComponent
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        ReactiveFormsModule
     ]
 })
 export class JacketModule { }

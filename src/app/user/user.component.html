@@ -1,4 +1,5 @@
 <div [classList]="'user module'">
+
   <ng-template [ngIf]="( currentFunctionality === 'showTable' )">
     <header [classList]="'user__header'">
       <button [classList]="'user__header--button delete'" (click)="deleteSelectedUser()">Delete Users</button>
@@ -73,6 +74,7 @@
     </div>
 
   </ng-template>
+
   <ng-template [ngIf]="( currentFunctionality === 'addUser' && userType !== 'u' )">
     <form [classList]="'user__form'">
       <header [classList]="'user__form--header'">
@@ -95,13 +97,6 @@
         </div>
         -->
       </header>
-
-      <p [classList]="'user__form--title'">Role</p>
-      <div [classList]="'user__form--inputBox'">
-        <div [classList]="'user__form--inputImageBox'">
-          <img src="assets/role.svg" [classList]="'user__form--inputImage'">
-        </div>
-      </div>
 
       <p [classList]="'user__form--title'">Name</p>
       <div [classList]="'user__form--inputBox'">
@@ -143,11 +138,24 @@
         <input type="password" [classList]="'user__form--input'" placeholder="Confirm password" #confirmPassword required>
       </div>
 
+      <p [classList]="'user__form--title'">Role</p>
+      <div [classList]="'user__form--inputBox'">
+        <div [classList]="'user__form--inputImageBox'">
+          <img src="assets/role.svg" [classList]="'user__form--inputImage'">
+        </div>
+        <select [classList]="'user__form--selectBox'" #role>
+          <option value="sa">Super Admin</option>
+          <option value="a">Admin</option>
+          <option value="a">User</option>
+        </select>
+      </div>
+
       <div [classList]="'user__form--buttonBox'">
-        <button type="submit" [classList]="'user__form--button'" (click)="createAccount($event, name.value, userName.value, email.value, password.value, confirmPassword.value)">Register</button>
+        <button type="submit" [classList]="'user__form--button'" (click)="createAccount($event, name.value, userName.value, email.value, password.value, confirmPassword.value, role.value)">Register</button>
         <button type="submit" [classList]="'user__form--button'" (click)="changeFunctionality('showTable')">Cancel</button>
       </div>
 
     </form>
   </ng-template>
+
 </div>

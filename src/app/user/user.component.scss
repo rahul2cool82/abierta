@@ -158,7 +158,6 @@
       justify-content: center;
       align-items: center;
       padding: 0.5vh 1vw;
-      width: max-content;
     }
 
     &--functionBox{
@@ -180,9 +179,8 @@
     }
 
     &--svg{
-      height: 1.5vw;
-      width: 1.5vw;
-      background-color: red;
+      height: 1vw;
+      width: 1vw;
     }
 
     &--checkBox{
@@ -274,6 +272,23 @@
     }
     &--input{
       width: calc( 100% - 3vw );
+      font-size: 1vw;
+      height: 3vw;
+      padding-left: 1vw;
+      display: block;
+      border: 0.05vw solid #AAAAAA;
+      background-color: #FAFAFA;
+      &:disabled{
+        background-color: #FAFAFA;
+      }
+      &:focus{
+        outline: none;
+      }
+    }
+
+    &--selectBox{
+      width: calc( 100% - 3vw );
+      flex-grow: 1;
       font-size: 1vw;
       height: 3vw;
       padding-left: 1vw;
