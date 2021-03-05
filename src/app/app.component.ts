@@ -30,6 +30,7 @@ export class AppComponent {
   currentScreen = 'login';
   currentModule = '';
   isModuleChanged = true;
+  developmentMode = 't';
   // change module function
   // tslint:disable-next-line:typedef
   changeModule( module: string ){

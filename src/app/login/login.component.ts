@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
     // tslint:disable-next-line:no-unused-expression
     this._service_api.postLoginAccount({username: userName, password}).
     subscribe( ( data ) => {
-      console.log('Login token: %o', data);
       this.tokenEvent.emit(JSON.stringify(data));
     } );
   }

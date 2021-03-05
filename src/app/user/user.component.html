@@ -1,50 +1,41 @@
 <div [classList]="'user module'">
 
-  <ng-template [ngIf]="( currentFunctionality === 'showTable' )">
-    <header [classList]="'user__header'">
-      <button [classList]="'user__header--button delete'" (click)="deleteSelectedUser()">Delete Users</button>
-      <button [classList]="'user__header--button'" (click)="changeFunctionality('addUser')">Add new user</button>
-      <div [classList]="'user__header--searchBox'">
-        <input type="text" [classList]="'user__header--searchTextBox'" placeholder="Search here">
-        <svg [classList]="'user__header--searchIcon'">
-          <use href="assets/search.svg#Layer_1"></use>
-        </svg>
-      </div>
-    </header>
-
+  <ng-template [ngIf]="( currentFunctionality === 'showTable' && userType !== 'u' )">
     <div [classList]="'user__tableContainer'">
 
-      <table [classList]="'user__table'">
-        <thead>
-        <tr>
-          <td [classList]="'user__table--checkBoxTd'"><input type="checkbox" [classList]="'user__table--checkBox'" (click)="checkAllCheckbox()"></td>
-          <td>Name</td>
-          <td>Username</td>
-          <td>Email</td>
-          <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
-            <td>Action</td>
-          </ng-template>
-        </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let u of usersList[currentPageIndex];index as i;">
-            <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
-              <td [classList]="'user__table--checkBoxTd'"><input type="checkbox" [classList]="'user__table--checkBox user'" (click)="uncheckParentCheckbox(i)"></td>
+      <table [classList]="'user__table table table-stripped table-bordered table-sm row-border hover'" datatable [dtOptions]="dtOptions" >
+        <thead [classList]="'thead'">
+          <tr>
+            <ng-template [ngIf]="( developmentMode !== 'test' )">
+              <th [classList]="'user__table--checkBox'"><input type="checkbox"></th>
             </ng-template>
-            <td><input type="text" disabled [classList]="'name'" value="{{u.name}}"></td>
-            <td><input type="text" disabled [classList]="'username'" value="{{u.userName}}"></td>
-            <td><input type="email" disabled [classList]="'email'" value="{{u.email}}"></td>
-            <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
-              <td>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <ng-template [ngIf]="( developmentMode !== 'test' )">
+              <th>Action</th>
+            </ng-template>
+          </tr>
+        </thead>
+        <tbody [classList]="'tbody'">
+          <tr *ngFor="let u of usersList;index as i;">
+            <ng-template [ngIf]="( developmentMode !== 'test' )">
+              <td [classList]="'user__table--checkBox'"><input type="checkbox"></td>
+            </ng-template>
+            <td>{{u.name}}</td>
+            <td>{{u.userName}}</td>
+            <td>{{u.email}}</td>
+            <ng-template [ngIf]="( developmentMode !== 'test' )">
+              <td [classList]="'user__table--actionContainerTd width'">
                 <div [classList]="'user__table--actionContainer'">
-                  <div [classList]="'user__table--functionBox'">
-                    <svg [classList]="'user__table--svg'">
+                  <div [classList]="'user__table--actionBox'">
+                    <svg>
                       <use href="assets/edit.svg#Layer_1"></use>
                     </svg>
                     <p>Edt</p>
                   </div>
-                  <div [classList]="'user__table--functionBox'" (click)="deleteUser(i)">
-                    <svg [classList]="'user__table--svg'">
+                  <div [classList]="'user__table--actionBox'">
+                    <svg>
                       <use href="assets/delete.svg#Layer_1"></use>
                     </svg>
                     <p>Dlt</p>
@@ -55,21 +46,6 @@
           </tr>
         </tbody>
       </table>
-
-      <footer [classList]="'user__tableContainer--footer'">
-        <div [classList]="'user__tableContainer--footerPageDescBox'">
-          <p [classList]="'user__tableContainer--footerPageDesc'">
-            Showing <span>{{fromIndex}}</span> to <span>{{toIndex}}</span> of <span>{{totalIndex}}</span> entries
-          </p>
-        </div>
-        <div [classList]="'user__tableContainer--footerPageIndexing'">
-          <p [classList]="'user__tableContainer--footerPageTab'" (click)="changeTable( currentPageIndex - 1 )">prev</p>
-          <div [classList]="'user__tableContainer--footerPageIndexes'" *ngFor="let index of pageIndexes;">
-            <p [classList]="'user__tableContainer--footerPageTab'" (click)="changeTable(index)">{{ index }}</p>
-          </div>
-          <p [classList]="'user__tableContainer--footerPageTab'" (click)="changeTable( currentPageIndex + 1 )">next</p>
-        </div>
-      </footer>
 
     </div>
 

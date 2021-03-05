@@ -105,91 +105,76 @@
   &__table{
     width: 100%;
     border-collapse: collapse;
-    & thead{
-      background-color: #EAEAEA;
+    border: 0vw solid #333;
+    & .thead{
+      background-color: #fff;
+      border: 0vw solid #333 !important;
       & tr{
-        & td{
-          border: 0.05vw solid #000;
-          font-size: 1.2vw;
-          width: 20vw;
-          padding: calc(.5vh + .7vw) 1.5vw;
-          color: #1E5072;
-          font-weight: bold;
-
-          &:last-of-type{
-            width: 1%;
+        & th{
+          font-size: 1vw;
+          padding: .5vw !important;
+          border: 0vw solid #333 !important;
+          border-bottom: 0.05vw solid #333 !important;
+          background-size: 1vw 1vw;
+          &:first-of-type{
+            background: none !important;
           }
-
-        }
-      }
-    }
-    & tbody{
-      & tr{
-
-        & td{
-          border: 0.05vw solid #000;
-
-          &:last-of-type{
-            width: max-content;
-          }
-
           & input{
-            width: 20vw;
-            height: 100%;
-            padding: 0.5vh 1.5vw;
-            font-size: 1vw;
-            border: 0;
-            display: flex;
-            &:disabled{
-              background-color: transparent;
-            }
+            height: 1vw;
+            width: 1vw;
           }
         }
       }
     }
-
-    &--checkBoxTd{
-      width: 1%;
-      padding: calc(.5vh + .7vw) 1.5vw;
+    & .tbody{
+      border: 0vw solid #333 !important;
+      & tr{
+        & td{
+          font-size: 1vw;
+          padding: .5vw !important;
+          border: 0vw solid #333 !important;
+          & input{
+            height: 1vw;
+            width: 1vw;
+          }
+        }
+      }
     }
-
+    &--checkBox{
+      width: 1%;
+      & input{
+        margin: 0;
+      }
+    }
+    &--actionContainerTd{
+      width: 1% !important;
+      &.width{
+        width: 1% !important;
+      }
+    }
     &--actionContainer{
       display: flex;
-      justify-content: center;
       align-items: center;
-      padding: 0.5vh 1vw;
+      justify-content: center;
     }
-
-    &--functionBox{
+    &--actionBox{
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       cursor: pointer;
-      margin-right: 1vw;
-
       &:last-of-type{
-        margin-right: 0;
+        margin-left: .5vw;
       }
-
+      & svg{
+        height: .5vw;
+        width: .5vw;
+      }
       & p{
-        font-size: 0.8vw;
-        text-align: center;
+        margin: 0;
+        font-size: .6vw;
       }
-
     }
-
-    &--svg{
-      height: 1vw;
-      width: 1vw;
-    }
-
-    &--checkBox{
-      width: 1vw !important;
-      height: 1vw !important;
-      border: 0.05vw solid #000;
-      background-color: red;
-    }
-
   }
 
   &__form{

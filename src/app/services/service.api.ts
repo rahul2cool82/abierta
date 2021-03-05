@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {User} from '../user/user.class';
+
 
 @Injectable()
 export class ServiceApi{
@@ -9,7 +10,7 @@ export class ServiceApi{
   }
   // tslint:disable-next-line:typedef
   postLoginAccount(user: any){
-    return this.httpClient.post( 'http://192.168.1.149:7771/users/signin', user );
+    return this.httpClient.post( 'http://localhost:7771/users/signin', user );
   }
   // tslint:disable-next-line:typedef
   postCreateAccount(user: User | undefined){
@@ -23,5 +24,16 @@ export class ServiceApi{
     const f = await fetch('files/demoUsers.json');
     const data = await f.json();
     return data;
+  }
+
+  // tslint:disable-next-line:typedef
+  getUserMe(token: string | undefined){
+    const headers = new HttpHeaders({
+      Authorization : 'Bearer ' + token,
+      'Content-Type' : 'application/json'
+    });
+    console.log(headers);
+    // @ts-ignore
+    return this.httpClient.get( 'http://localhost:7771/users/me', {headers} );
   }
 }

@@ -6,6 +6,10 @@
   font-family: Calibri;
 }
 
+body.body{
+  font-size: 1vw;
+}
+
 html{
   font-size: 62.5%;
 }
@@ -21,5 +25,103 @@ a{
   &.select{
     opacity: 1;
     margin-left: 0;
+  }
+}
+
+.dataTables_length{
+  display: none !important;
+}
+
+.dataTables_info{
+  font-size: 0.8vw;
+}
+
+.paginate_button{
+  font-size: 0.8vw;
+}
+
+.paginate_button{
+  padding: .25vw .5vw !important;
+  font-size: .8vw !important;
+  line-height: 0;
+}
+
+.dataTables_wrapper .dataTables_paginate a.paginate_button.current, .dataTables_wrapper .dataTables_paginate a.paginate_button.current:hover{
+  font-size: .8vw;
+  padding: 0 !important;
+  margin: 0 !important;
+  min-width: unset !important;
+}
+
+table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc, table.dataTable thead .sorting_asc_disabled, table.dataTable thead .sorting_desc_disabled {
+  height: 1vw !important;
+  width: 1vw !important;
+}
+
+.dataTables_paginate.paging_full_numbers{
+  display: flex !important;
+  align-items: center !important;
+  float: right !important;
+  padding-top: 0 !important;
+  margin-top: .8vw !important;
+
+  & span{
+    display: flex !important;
+    align-items: center !important;
+    height: max-content !important;
+    line-height: 0 !important;
+    width: max-content !important;
+    & a.paginate_button{
+      border: 0.05vw solid #000 !important;
+      padding: 0.5vw .5vw !important;
+      font-size: .8vw !important;
+      display: inline-block !important;
+      min-width: unset !important;
+      margin-left: .5vw !important;
+      &:hover,&.current:hover,&.current,&:focus,&.next:hover{
+        border: 0.05vw solid #1A5072 !important;
+        padding: 0.5vw .5vw !important;
+        font-size: .8vw !important;
+        display: inline-block !important;
+        margin-left: .5vw !important;
+        background: #1A5072 !important;
+        color: #fff !important;
+      }
+    }
+  }
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+  border: 0.05vw solid #000 !important;
+  padding: 0.5vw .5vw !important;
+  font-size: .8vw !important;
+  display: inline-block !important;
+  margin-left: .5vw !important;
+}
+
+table.dataTable.no-footer{
+  border-bottom: 0 !important;
+}
+
+.dataTables_info{
+  float: left !important;
+  text-align: left !important;
+  width: 100% !important;
+}
+
+.dataTables_filter{
+  float: right !important;
+  margin-bottom: 2vh !important;
+  & label{
+    font-size: .8vw !important;
+    margin: 0 !important;
+  }
+  & input{
+    border: 0.05vw solid #000 !important;
+    border-radius: 0.5vw !important;
+    padding: .5vw .75vw !important;
+    &:focus{
+      outline: none !important;
+    }
   }
 }
