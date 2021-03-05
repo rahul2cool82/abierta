@@ -165,6 +165,7 @@ export class UserComponent implements OnInit {
     this.usersList = newUsers;
     // @ts-ignore
     const newPageIndexes = [];
+    this.totalIndex = 0;
     this.getNewUserList.emit(JSON.stringify(this.usersList));
     for ( let i = 0 ; i < this.usersList.length ; i++ ){
       newPageIndexes[i] = i;

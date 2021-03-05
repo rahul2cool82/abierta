@@ -1,4 +1,5 @@
 <div [classList]="'configuration module'">
+
   <ng-template [ngIf]="( currentFunctionality === 'showTable' )">
     <header [classList]="'configuration__header'">
       <button [classList]="'configuration__header--button'" (click)="changeFunctionality('addConfiguration')">Add new configuration</button>
@@ -74,6 +75,7 @@
     </div>
 
   </ng-template>
+
   <ng-template [ngIf]="( currentFunctionality === 'addConfiguration' && userType !== 'u' )">
     <form [classList]="'configuration__form'">
       <div [classList]="'configuration__form--container'">
@@ -95,5 +97,6 @@
       </div>
     </form>
   </ng-template>
+
 </div>
 

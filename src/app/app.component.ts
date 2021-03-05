@@ -27,7 +27,7 @@ export class AppComponent {
   userType = 'sa';
   usersList = [];
   // global screen variables
-  currentScreen = 'dashboard';
+  currentScreen = 'login';
   currentModule = '';
   isModuleChanged = true;
   // change module function
@@ -110,5 +110,15 @@ export class AppComponent {
   getNewUserList( data: string ){
     const jsonData = JSON.parse( data );
     this.usersList = jsonData;
+  }
+  // tslint:disable-next-line:typedef
+  getTokenFromLoginScreen( data: string ){
+    if ( data === null || data === undefined ) {
+      return;
+    }
+    const jsonData = JSON.parse( data );
+    this.token = jsonData.token;
+    console.log('Token after login: %s', this.token);
+    this.currentScreen = 'dashboard';
   }
 }

@@ -1,5 +1,5 @@
 <ng-template [ngIf]="( currentScreen === 'login' )">
-  <app-login></app-login>
+  <app-login (tokenEvent)="getTokenFromLoginScreen($event)"></app-login>
 </ng-template>
 
 <ng-template [ngIf]="( currentScreen === 'dashboard' )">

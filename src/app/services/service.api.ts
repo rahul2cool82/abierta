@@ -8,12 +8,12 @@ export class ServiceApi{
   constructor(private httpClient: HttpClient) {
   }
   // tslint:disable-next-line:typedef
-  postCreateAccount(user: User | undefined){
-    return this.httpClient.post( '', user);
+  postLoginAccount(user: any){
+    return this.httpClient.post( 'http://192.168.1.149:7771/users/signin', user );
   }
   // tslint:disable-next-line:typedef
-  postLoginAccount(user: any){
-    return this.httpClient.post( 'http://localhost:8762/users/signin', user );
+  postCreateAccount(user: User | undefined){
+    return this.httpClient.post( '', user);
   }
   // tslint:disable-next-line:typedef
   async getGettingAllUsers(token: any){

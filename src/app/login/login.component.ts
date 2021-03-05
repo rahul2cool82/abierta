@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { ServiceApi } from '../services/service.api';
 
 @Component({
@@ -11,6 +11,8 @@ export class LoginComponent implements OnInit {
   // tslint:disable-next-line:variable-name
   constructor( private _service_api: ServiceApi ) { }
 
+  @Output() tokenEvent = new EventEmitter<string>();
+
   ngOnInit(): void {
   }
 
@@ -21,6 +23,7 @@ export class LoginComponent implements OnInit {
     this._service_api.postLoginAccount({username: userName, password}).
     subscribe( ( data ) => {
       console.log('Login token: %o', data);
+      this.tokenEvent.emit(JSON.stringify(data));
     } );
   }
 
