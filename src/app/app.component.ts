@@ -1,10 +1,9 @@
 import {Component, Output, EventEmitter, ViewChild} from '@angular/core';
-import { ServiceApi } from './services/service.login';
+import { ServiceApi } from './services/service.api';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {UserComponent} from './user/user.component';
 import {ConfigurationComponent} from './configuration/configuration.component';
 import {JacketComponent} from './jacket/jacket.component';
-import {User} from './user/user.class';
 
 @Component({
   selector: 'app-root',
@@ -21,14 +20,15 @@ export class AppComponent {
   token: undefined;
   // tslint:disable-next-line:variable-name
   constructor(private _service_api: ServiceApi) {
+    this.getAllUsers();
   }
 
   // exchangeable variables
   userType = 'sa';
-  usersList: User[] = [];
+  usersList = [];
 
   // global screen variables
-  currentScreen = 'login';
+  currentScreen = 'dashboard';
   currentModule = '';
   isModuleChanged = true;
   // change module function
@@ -96,4 +96,20 @@ export class AppComponent {
   }
 
   // if user login then perform some functions
+  // tslint:disable-next-line:typedef
+  getAllUsers(){
+    if ( this.userType === 'u' ){
+      return;
+    }
+    this._service_api.getGettingAllUsers(this.token)
+      .then( ( data ) => {
+        this.usersList = data;
+      } );
+  }
+
+  // tslint:disable-next-line:typedef
+  getNewUserList( data: string ){
+    const jsonData = JSON.parse( data );
+    this.usersList = jsonData;
+  }
 }

@@ -46,7 +46,7 @@
         <app-dashboard [userType]="userType"></app-dashboard>
       </ng-template>
       <ng-template [ngIf]="( currentModule === 'user' )">
-        <app-user [userType]="userType" [usersList]="usersList"></app-user>
+        <app-user [userType]="userType" [usersList]="usersList" (getNewUserList)="getNewUserList($event)"></app-user>
       </ng-template>
       <ng-template [ngIf]="( currentModule === 'configuration' )">
         <app-configuration [userType]="userType"></app-configuration>

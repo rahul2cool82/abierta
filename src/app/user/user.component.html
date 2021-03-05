@@ -1,6 +1,7 @@
 <div [classList]="'user module'">
   <ng-template [ngIf]="( currentFunctionality === 'showTable' )">
     <header [classList]="'user__header'">
+      <button [classList]="'user__header--button delete'" (click)="deleteSelectedUser()">Delete Users</button>
       <button [classList]="'user__header--button'" (click)="changeFunctionality('addUser')">Add new user</button>
       <div [classList]="'user__header--searchBox'">
         <input type="text" [classList]="'user__header--searchTextBox'" placeholder="Search here">
@@ -15,6 +16,7 @@
       <table [classList]="'user__table'">
         <thead>
         <tr>
+          <td [classList]="'user__table--checkBoxTd'"><input type="checkbox" [classList]="'user__table--checkBox'" (click)="checkAllCheckbox()"></td>
           <td>Name</td>
           <td>Username</td>
           <td>Email</td>
@@ -24,10 +26,13 @@
         </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><input type="text" value="Demo Name" disabled [classList]="'name'"></td>
-            <td><input type="text" value="Demo Name" disabled [classList]="'username'"></td>
-            <td><input type="email" value="sa@example.com" disabled [classList]="'email'"></td>
+          <tr *ngFor="let u of usersList[currentPageIndex];index as i;">
+            <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
+              <td [classList]="'user__table--checkBoxTd'"><input type="checkbox" [classList]="'user__table--checkBox user'" (click)="uncheckParentCheckbox(i)"></td>
+            </ng-template>
+            <td><input type="text" disabled [classList]="'name'" value="{{u.name}}"></td>
+            <td><input type="text" disabled [classList]="'username'" value="{{u.userName}}"></td>
+            <td><input type="email" disabled [classList]="'email'" value="{{u.email}}"></td>
             <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
               <td>
                 <div [classList]="'user__table--actionContainer'">
@@ -37,14 +42,11 @@
                     </svg>
                     <p>Edt</p>
                   </div>
-                  <div [classList]="'user__table--functionBox'">
+                  <div [classList]="'user__table--functionBox'" (click)="deleteUser(i)">
                     <svg [classList]="'user__table--svg'">
                       <use href="assets/delete.svg#Layer_1"></use>
                     </svg>
                     <p>Dlt</p>
-                  </div>
-                  <div [classList]="'user__table--functionBox'">
-                    <input type="checkbox" [classList]="'user__table--checkBox'">
                   </div>
                 </div>
               </td>
@@ -56,19 +58,15 @@
       <footer [classList]="'user__tableContainer--footer'">
         <div [classList]="'user__tableContainer--footerPageDescBox'">
           <p [classList]="'user__tableContainer--footerPageDesc'">
-            Showing <span #from>1</span> to <span #to>8</span> of <span #total>50</span> entries
+            Showing <span>{{fromIndex}}</span> to <span>{{toIndex}}</span> of <span>{{totalIndex}}</span> entries
           </p>
         </div>
         <div [classList]="'user__tableContainer--footerPageIndexing'">
-          <p [classList]="'user__tableContainer--footerPageTab'">prev</p>
-          <div [classList]="'user__tableContainer--footerPageIndexes'">
-            <p [classList]="'user__tableContainer--footerPageTab select'">1</p>
-            <p [classList]="'user__tableContainer--footerPageTab'">2</p>
-            <p [classList]="'user__tableContainer--footerPageTab'">3</p>
-            <p [classList]="'user__tableContainer--footerPageTab'">4</p>
-            <p [classList]="'user__tableContainer--footerPageTab'">5</p>
+          <p [classList]="'user__tableContainer--footerPageTab'" (click)="changeTable( currentPageIndex - 1 )">prev</p>
+          <div [classList]="'user__tableContainer--footerPageIndexes'" *ngFor="let index of pageIndexes;">
+            <p [classList]="'user__tableContainer--footerPageTab'" (click)="changeTable(index)">{{ index }}</p>
           </div>
-          <p [classList]="'user__tableContainer--footerPageTab'">next</p>
+          <p [classList]="'user__tableContainer--footerPageTab'" (click)="changeTable( currentPageIndex + 1 )">next</p>
         </div>
       </footer>
 
@@ -80,8 +78,9 @@
       <header [classList]="'user__form--header'">
         <div [classList]="'user__form--headerCreateBox'">
           <p [classList]="'user__form--headerParagraph'">Create Account</p>
-          <img src="assets/create_ac_dropdown.svg" [classList]="'user__form--headerImage'">
+          <!--<img src="assets/create_ac_dropdown.svg" [classList]="'user__form--headerImage'"> -->
         </div>
+        <!--
         <div [classList]="'user__form--headerSelectUserBox select'">
           <div [classList]="'user__form--headerUserBox'">
             <img [classList]="'user__form--headerUserIcon'" src="assets/user_ac.svg">
@@ -94,6 +93,7 @@
             </div>
           </ng-template>
         </div>
+        -->
       </header>
 
       <p [classList]="'user__form--title'">Role</p>
@@ -101,7 +101,6 @@
         <div [classList]="'user__form--inputImageBox'">
           <img src="assets/role.svg" [classList]="'user__form--inputImage'">
         </div>
-        <input type="text" [classList]="'user__form--input'" disabled value="{{newUser?.userType === 'a' ? 'admin' : 'user'}}">
       </div>
 
       <p [classList]="'user__form--title'">Name</p>

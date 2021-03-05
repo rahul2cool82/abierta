@@ -13,7 +13,15 @@ export class ServiceApi{
   }
   // tslint:disable-next-line:typedef
   postLoginAccount(user: any){
-    console.log(user);
     return this.httpClient.post( 'http://localhost:8762/users/signin', user );
+  }
+  // tslint:disable-next-line:typedef
+  async getGettingAllUsers(token: any){
+    if ( false ){
+      return this.httpClient.post( 'http://url_to_be_paste_here', token );
+    }
+    const f = await fetch('files/demoUsers.json');
+    const data = await f.json();
+    return data;
   }
 }

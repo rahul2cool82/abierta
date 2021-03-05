@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginModule } from './login/login.module';
-import { ServiceApi } from './services/service.login';
+import { ServiceApi } from './services/service.api';
 import {DashboardModule} from './dashboard/dashboard.module';
 import {UserModule} from './user/user.module';
 import {ConfigurationModule} from './configuration/configuration.module';

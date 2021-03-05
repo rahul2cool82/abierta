@@ -19,6 +19,10 @@
       &:focus{
         outline: none;
       }
+      &.delete{
+        margin-right: auto;
+        background-color: orangered;
+      }
     }
     &--searchBox{
       position: relative;
@@ -142,6 +146,11 @@
           }
         }
       }
+    }
+
+    &--checkBoxTd{
+      width: 1%;
+      padding: calc(.5vh + .7vw) 1.5vw;
     }
 
     &--actionContainer{
