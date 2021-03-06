@@ -61,7 +61,6 @@
   &__tableContainer{
     margin-top: 2vw;
     width: 100%;
-    position: relative;
 
     &--footer{
       margin-top: 3vh;
@@ -105,16 +104,19 @@
   &__table{
     width: 100%;
     border-collapse: collapse;
-    border: 0vw solid #333;
+    border: 0.05vw solid #333 !important;
+
     & .thead{
       background-color: #fff;
       border: 0vw solid #333 !important;
+      padding: .5vw;
       & tr{
         & th{
           font-size: 1vw;
-          padding: .5vw !important;
+          padding: .5vw .8vw !important;
           border: 0vw solid #333 !important;
           border-bottom: 0.05vw solid #333 !important;
+          border-right: 0.05vw solid #333 !important;
           background-size: 1vw 1vw;
           &:first-of-type{
             background: none !important;
@@ -128,11 +130,13 @@
     }
     & .tbody{
       border: 0vw solid #333 !important;
+      border-bottom: 0.05vw solid #333 !important;
       & tr{
         & td{
           font-size: 1vw;
-          padding: .5vw !important;
+          padding: .5vw .8vw !important;
           border: 0vw solid #333 !important;
+          border-right: 0.05vw solid #333 !important;
           & input{
             height: 1vw;
             width: 1vw;

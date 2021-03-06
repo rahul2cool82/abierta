@@ -4,6 +4,9 @@
 
 <ng-template [ngIf]="( currentScreen === 'dashboard' )">
   <header [classList]="'header'">
+    <div [classList]="'header__imageBox'">
+      <img src="assets/uk-police-logo.jpg" [classList]="'header__imageBox--logo'">
+    </div>
     <div [classList]="'header__userBox'">
       <p [classList]="'header__userBox--userName'">Amit Vyas</p>
       <img [classList]="'header__userBox--svg'" src="assets/create_ac_dropdown_png.png">
@@ -12,32 +15,46 @@
   <div [classList]="'container'">
     <!-- ###########################      SIDEBAR        ######################################### -->
     <section [classList]="'sidebar'">
-      <div [classList]="'sidebar__imageBox'">
-        <img src="#" [classList]="'sidebar__imageBox--image'">
-      </div>
-      <div [classList]="'sidebar__module firstChild'" (click)="changeModule('dashboard')">
+      <p [classList]="'sidebar__heading'"></p>
+      <div [classList]="'sidebar__module firstChild'">
         <svg [classList]="'sidebar__module--svg'">
           <use href="assets/dashboard.svg#Layer_1"></use>
         </svg>
         <p>Dashboard</p>
       </div>
-      <div [classList]="'sidebar__module'" (click)="changeModule('user')">
+      <div [classList]="'sidebar__module'" (click)="showDropdown('user')">
         <svg [classList]="'sidebar__module--svg'">
           <use href="assets/user.svg#Layer_1"></use>
         </svg>
         <p>User</p>
+        <img src="assets/create_ac_dropdown_png.png" [classList]="'dropdown'">
       </div>
-      <div [classList]="'sidebar__module'" (click)="changeModule('configuration')">
+      <div [classList]="'sidebar__moduleDropdown'">
+        <p [classList]="'sidebar__moduleDropdown--func'" (click)="changeModule( 'user', 'showTable',0 )">Show Users</p>
+        <p [classList]="'sidebar__moduleDropdown--func'" (click)="changeModule( 'user', 'addUser',1 )">Add User</p>
+      </div>
+      <div [classList]="'sidebar__module'" (click)="showDropdown('configuration')">
         <svg [classList]="'sidebar__module--svg'">
           <use href="assets/configuration.svg#Layer_1"></use>
         </svg>
         <p>Configuration</p>
+        <img src="assets/create_ac_dropdown_png.png" [classList]="'dropdown'">
       </div>
-      <div [classList]="'sidebar__module'" (click)="changeModule('jacket')">
+      <div [classList]="'sidebar__moduleDropdown'">
+        <p [classList]="'sidebar__moduleDropdown--func'" (click)="changeModule( 'configuration', 'showTable',2 )">Show Configurations</p>
+        <p [classList]="'sidebar__moduleDropdown--func'" (click)="changeModule( 'configuration', 'addConfiguration',3 )">Add Configuration</p>
+      </div>
+      <div [classList]="'sidebar__module'" (click)="showDropdown('jacket')">
         <svg [classList]="'sidebar__module--svg'">
           <use href="assets/jacket.svg#Layer_1"></use>
         </svg>
         <p>Jacket</p>
+        <img src="assets/create_ac_dropdown_png.png" [classList]="'dropdown'">
+      </div>
+      <div [classList]="'sidebar__moduleDropdown'">
+        <p [classList]="'sidebar__moduleDropdown--func'" (click)="changeModule( 'jacket', 'showTable',4 )">Show Jackets</p>
+        <p [classList]="'sidebar__moduleDropdown--func'" (click)="changeModule( 'jacket', 'addJacket',5 )">Add Jacket</p>
+        <p [classList]="'sidebar__moduleDropdown--func'" (click)="changeModule( 'jacket', 'verifyJacket',6 )">Verify Jacket</p>
       </div>
     </section>
     <!-- ###########################      MODULE        ######################################### -->

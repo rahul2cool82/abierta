@@ -28,12 +28,17 @@ export class ServiceApi{
 
   // tslint:disable-next-line:typedef
   getUserMe(token: string | undefined){
-    const headers = new HttpHeaders({
-      Authorization : 'Bearer ' + token,
+    /*const headers = new HttpHeaders({
+      Authorization : 'Bearer ' + localStorage.getItem('token'),
       'Content-Type' : 'application/json'
     });
-    console.log(headers);
+    console.log(headers);*/
     // @ts-ignore
-    return this.httpClient.get( 'http://localhost:7771/users/me', {headers} );
+    return this.httpClient.get(  'http://localhost:7771/users/me' );
+  }
+
+  // tslint:disable-next-line:typedef
+  getToken(){
+    return localStorage.getItem('token');
   }
 }

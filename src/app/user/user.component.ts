@@ -32,11 +32,13 @@ export class UserComponent implements OnInit {
       pageLength : 8,
       processing : true
     };
-    this._service_api.getUserMe( this.token )
-      .subscribe( ( data ) => {
-        // @ts-ignore
-        console.log('User me response : %o', this.data);
-      } );
+    if ( this.currentFunctionality === 'showTable' ){
+      this._service_api.getUserMe( this.token ).subscribe(
+        ( data ) => {
+          console.log( 'Getting User Me : %o', data );
+        }
+      );
+    }
   }
   // tslint:disable-next-line:typedef
   changeFunctionality( functionality: string ){

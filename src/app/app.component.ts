@@ -13,11 +13,11 @@ import {JacketComponent} from './jacket/jacket.component';
 export class AppComponent {
 
   @ViewChild( DashboardComponent ) dashboardChild: DashboardComponent | undefined;
-  @ViewChild( UserComponent ) userChild: DashboardComponent | undefined;
+  @ViewChild( UserComponent ) userChild: UserComponent | undefined;
   @ViewChild( ConfigurationComponent ) configurationChild: ConfigurationComponent | undefined;
   @ViewChild( JacketComponent ) jacketChild: JacketComponent | undefined;
 
-  token: undefined;
+  token = '';
   // tslint:disable-next-line:variable-name
   constructor(private _service_api: ServiceApi) {
     this.getAllUsers();
@@ -27,23 +27,24 @@ export class AppComponent {
   userType = 'sa';
   usersList = [];
   // global screen variables
-  currentScreen = 'login';
+  currentScreen = 'dashboard';
   currentModule = '';
   isModuleChanged = true;
   developmentMode = 't';
+  currentDropdown = '';
+  currentModuleFunc = -1;
   // change module function
   // tslint:disable-next-line:typedef
-  changeModule( module: string ){
-    if ( !this.isModuleChanged ){
+  changeModule( module: string, functionality: string, i: number ){
+    console.log('idhr : %s', module);
+    const moduleFunctionalities = document.querySelectorAll('.sidebar__moduleDropdown--func');
+    if ( this.currentModuleFunc === i ){
       return;
     }
-    console.log('idhr : %s', module);
     if ( this.currentScreen !== 'dashboard' ){
       return;
     }
-    if ( module === this.currentModule ){
-      return;
-    }
+    Array.from( moduleFunctionalities ).forEach( (f) => { f.classList.remove('select'); } );
     this.isModuleChanged = false;
     const sidebarModulesDOM = document.querySelectorAll('.sidebar__module');
     Array.from( sidebarModulesDOM ).forEach( (dom) => { dom.classList.remove('select'); } );
@@ -71,6 +72,7 @@ export class AppComponent {
     setTimeout(
       () => {
         this.currentModule = module;
+        moduleFunctionalities[i].classList.add( 'select' );
         setTimeout(
           () => {
             switch (module){
@@ -79,15 +81,19 @@ export class AppComponent {
                 break;
               case 'user':
                 this.userChild?.showModule();
+                this.userChild?.changeFunctionality( functionality );
                 break;
               case 'configuration':
+                this.configurationChild?.changeFunctionality(functionality);
                 this.configurationChild?.showModule();
                 break;
               case'jacket':
+                this.jacketChild?.changeFunctionality(functionality);
                 this.jacketChild?.showModule();
                 break;
             }
             this.isModuleChanged = true;
+            this.currentModuleFunc = i;
           }, 20
         );
       }, 180
@@ -119,7 +125,53 @@ export class AppComponent {
     }
     const jsonData = JSON.parse( data );
     this.token = jsonData.token;
+    localStorage.setItem( 'token', this.token );
     console.log('Token after login: %s', this.token);
     this.currentScreen = 'dashboard';
+  }
+  // tslint:disable-next-line:typedef
+  showDropdown( dropdown: string ){
+    const dropdowns = document.querySelectorAll('.sidebar__moduleDropdown');
+    const sidebarModules = document.querySelectorAll('.sidebar__module');
+    if ( this.currentDropdown === dropdown ){
+      console.log('Ehtegvasdhbfkjasdnnflkasdf');
+      Array.from( dropdowns ).forEach( (d) => {
+        // @ts-ignore
+        d.style.height = 0;
+        d.classList.remove('select');
+      } );
+      Array.from( sidebarModules ).forEach( (m) => { m.classList.remove('select'); } );
+      this.currentDropdown = '';
+      return;
+    }
+    Array.from( dropdowns ).forEach( (d) => {
+      // @ts-ignore
+      d.style.height = 0;
+      d.classList.remove('select');
+    } );
+    Array.from( sidebarModules ).forEach( ( module ) => { module.classList.remove('select'); } );
+    let index = 0;
+    let sideBarIndex = 0;
+    switch ( dropdown ){
+      case 'user':
+        index = 0;
+        sideBarIndex = 1;
+        break;
+      case 'configuration':
+        index = 1;
+        sideBarIndex = 2;
+        break;
+      case 'jacket':
+        index = 2;
+        sideBarIndex = 3;
+        break;
+      default:
+        return;
+    }
+    // @ts-ignore
+    dropdowns[index].style.height = dropdowns[index].scrollHeight + 'px';
+    dropdowns[index].classList.add('select');
+    sidebarModules[sideBarIndex].classList.add( 'select' );
+    this.currentDropdown = dropdown;
   }
 }
