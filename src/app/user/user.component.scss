@@ -112,12 +112,13 @@
       padding: .5vw;
       & tr{
         & th{
-          font-size: 1vw;
+          font-size: 1.2vw;
           padding: .5vw .8vw !important;
           border: 0vw solid #333 !important;
           border-bottom: 0.05vw solid #333 !important;
           border-right: 0.05vw solid #333 !important;
           background-size: 1vw 1vw;
+          font-weight: bold;
           &:first-of-type{
             background: none !important;
           }
@@ -163,20 +164,16 @@
     }
     &--actionBox{
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
       cursor: pointer;
-      &:last-of-type{
-        margin-left: .5vw;
-      }
       & svg{
-        height: .5vw;
-        width: .5vw;
+        height: 1vw;
+        width: 1vw;
       }
       & p{
         margin: 0;
-        font-size: .6vw;
+        font-size: 1vw;
+        margin-left: .3vw;
       }
     }
   }
@@ -240,8 +237,9 @@
     }
 
     &--title{
-      font-size: 1vw;
-      margin-top: 2vh;
+      font-size: 1.2vw;
+      margin-top: 1vh;
+      margin-bottom: 0;
     }
     &--inputBox{
       width: 30vw;
@@ -295,7 +293,7 @@
     &--buttonBox{
       display: flex;
       align-items: center;
-      margin-top: 2vh;
+      margin-top: 6vh;
     }
 
     &--button{

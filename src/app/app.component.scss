@@ -2,7 +2,7 @@
   width: 100%;
   position: relative;
   height: 7vh;
-  background-color: #1A5072;
+  background-color: #004F87;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -30,9 +30,26 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    height: 100%;
+    padding: 0 1vw;
+    cursor: pointer;
+    &--imageBox{
+      height: 6vh;
+      width: 6vh;
+      border-radius: 6vh;
+      overflow: hidden;
+      margin-right: 1vw;
+    }
+    &--image{
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
     &--userName{
-      font-size: 1vw;
+      font-size: 1.2vw;
       margin-bottom: 0;
+      color: #fff;
+      font-weight: bold;
     }
     &--svg{
       height: 1vw;
@@ -40,6 +57,8 @@
       margin-left: 1vw;
       object-fit: contain;
       transform: rotateZ(90deg);
+      background-color: #fff;
+      border-radius: .3vw;
     }
   }
 }
@@ -60,7 +79,7 @@
   width: 100%;
   position: relative;
   background-color: #ffffff;
-  box-shadow: 0 0 1vw #00000030;
+  box-shadow: 0 0 0.5vw #00000030;
 
   display: flex;
   flex-direction: column;
@@ -68,7 +87,7 @@
 
   &__heading{
     width: 100%;
-    font-size: .5vw;
+    font-size: 1.2vw;
     text-transform: uppercase;
     font-weight: 300;
     padding: .5vw;
@@ -83,7 +102,7 @@
     align-items: center;
     transition: .3s;
     cursor: pointer;
-    border-top: 0vw solid #1A5072;
+    border-top: 0vw solid #004F87;
 
     &.firstChild{
       border-top: 0vw solid transparent !important;
@@ -91,8 +110,8 @@
 
     &.select,&:hover{
       width: 100%;
-      border-top: 0vw solid #1A5072;
-      background-color: #1A5072;
+      border-top: 0vw solid #004F87;
+      background-color: #004F87;
 
       & p{
         color: #fff;
@@ -117,9 +136,8 @@
       margin-right: 0.5vw;
     }
     & p{
-      font-size: 1vw;
-      color: #1E5072;
-      font-weight: 500;
+      font-size: 1.2vw;
+      color: #1A5072;
       margin-bottom: 0;
       width: calc( 100% - 4vw );
     }
@@ -133,7 +151,7 @@
 
   &__moduleDropdown{
     width: 100%;
-    background-color: #4f7f9c;
+    background-color: #fff;
     padding: 0;
     margin: 0;
     overflow: hidden;
@@ -143,12 +161,13 @@
       margin: 0;
       padding: .5vw;
       padding-left: 3.5vw;
-      font-size: .8vw;
+      font-size: 1vw;
       font-weight: 500;
       transition: .3s;
       cursor: pointer;
+      color: #1A5072;
       &:hover,&.select{
-        background-color: #135d8c;
+        background-color: #7a89b3;
         color: #fff;
       }
     }
@@ -160,8 +179,23 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-image: url("../assets/bg_PNG.png");
+  background-color: #fff;
   background-size:100% 100%;
   -o-background-size: 100% 100%;
   -webkit-background-size: 100% 100%;
+}
+
+.accountDropdown{
+  position: absolute;
+  top: 7vh;
+  right: 3vw;
+  width: 10vw;
+  background-color: #7a89b3;
+  z-index: 10;
+  &__paragraph{
+    padding: .5vw 1.5vw;
+    cursor: pointer;
+    font-size: 1.2vw;
+    color: #fff;
+  }
 }

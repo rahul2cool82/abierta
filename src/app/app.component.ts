@@ -27,12 +27,13 @@ export class AppComponent {
   userType = 'sa';
   usersList = [];
   // global screen variables
-  currentScreen = 'dashboard';
+  currentScreen = 'login';
   currentModule = '';
   isModuleChanged = true;
   developmentMode = 't';
   currentDropdown = '';
   currentModuleFunc = -1;
+  isAccountDropdown = false;
   // change module function
   // tslint:disable-next-line:typedef
   changeModule( module: string, functionality: string, i: number ){
@@ -65,7 +66,12 @@ export class AppComponent {
         sidebarModulesDOM[2].classList.add('select');
         break;
       case 'jacket':
-        sidebarModulesDOM[3].classList.add('select');
+        if ( this.userType === 'u' ){
+          sidebarModulesDOM[0].classList.add('select');
+          i = 0;
+        }else{
+          sidebarModulesDOM[3].classList.add('select');
+        }
         break;
     }
     // This timeout function helps in transition between two modules
@@ -162,8 +168,8 @@ export class AppComponent {
         sideBarIndex = 2;
         break;
       case 'jacket':
-        index = 2;
-        sideBarIndex = 3;
+        index = this.userType === 'u' ? 0 : 2;
+        sideBarIndex = index + 1;
         break;
       default:
         return;
@@ -173,5 +179,11 @@ export class AppComponent {
     dropdowns[index].classList.add('select');
     sidebarModules[sideBarIndex].classList.add( 'select' );
     this.currentDropdown = dropdown;
+  }
+
+  // tslint:disable-next-line:typedef
+  logout(){
+    localStorage.removeItem('token');
+    this.currentScreen = 'login';
   }
 }

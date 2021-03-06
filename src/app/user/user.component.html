@@ -32,13 +32,7 @@
                     <svg>
                       <use href="assets/edit.svg#Layer_1"></use>
                     </svg>
-                    <p>Edt</p>
-                  </div>
-                  <div [classList]="'user__table--actionBox'">
-                    <svg>
-                      <use href="assets/delete.svg#Layer_1"></use>
-                    </svg>
-                    <p>Dlt</p>
+                    <p>Edit</p>
                   </div>
                 </div>
               </td>
@@ -56,22 +50,7 @@
       <header [classList]="'user__form--header'">
         <div [classList]="'user__form--headerCreateBox'">
           <p [classList]="'user__form--headerParagraph'">Create User</p>
-          <!--<img src="assets/create_ac_dropdown.svg" [classList]="'user__form--headerImage'"> -->
         </div>
-        <!--
-        <div [classList]="'user__form--headerSelectUserBox select'">
-          <div [classList]="'user__form--headerUserBox'">
-            <img [classList]="'user__form--headerUserIcon'" src="assets/user_ac.svg">
-            <p [classList]="'user__form--headerUsertype'">User Account</p>
-          </div>
-          <ng-template [ngIf]="( userType === 'sa' )">
-            <div [classList]="'user__form--headerUserBox'">
-              <img [classList]="'user__form--headerUserIcon'" src="assets/admin_ac.svg">
-              <p [classList]="'user__form--headerUsertype'">Admin Account</p>
-            </div>
-          </ng-template>
-        </div>
-        -->
       </header>
 
       <p [classList]="'user__form--title'">Name</p>
@@ -106,14 +85,6 @@
         <input type="password" [classList]="'user__form--input'" placeholder="Enter password" #password required>
       </div>
 
-      <p [classList]="'user__form--title'">Confirm Password</p>
-      <div [classList]="'user__form--inputBox'">
-        <div [classList]="'user__form--inputImageBox'">
-          <img src="assets/re_enter_pwd.svg" [classList]="'user__form--inputImage'">
-        </div>
-        <input type="password" [classList]="'user__form--input'" placeholder="Confirm password" #confirmPassword required>
-      </div>
-
       <p [classList]="'user__form--title'">Role</p>
       <div [classList]="'user__form--inputBox'">
         <div [classList]="'user__form--inputImageBox'">
@@ -127,8 +98,7 @@
       </div>
 
       <div [classList]="'user__form--buttonBox'">
-        <button type="submit" [classList]="'user__form--button'" (click)="createAccount($event, name.value, userName.value, email.value, password.value, confirmPassword.value, role.value)">Create</button>
-        <button type="submit" [classList]="'user__form--button'" (click)="changeFunctionality('showTable')">Cancel</button>
+        <button type="submit" [classList]="'user__form--button button'" (click)="createAccount($event, name.value, userName.value, email.value, password.value, role.value)">Create</button>
       </div>
 
     </form>

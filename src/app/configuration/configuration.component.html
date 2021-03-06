@@ -1,77 +1,42 @@
 <div [classList]="'configuration module'">
 
   <ng-template [ngIf]="( currentFunctionality === 'showTable' )">
-    <header [classList]="'configuration__header'">
-      <button [classList]="'configuration__header--button'" (click)="changeFunctionality('addConfiguration')">Add new configuration</button>
-      <div [classList]="'configuration__header--searchBox'">
-        <input type="text" [classList]="'configuration__header--searchTextBox'" placeholder="Search here">
-        <svg [classList]="'configuration__header--searchIcon'">
-          <use href="assets/search.svg#Layer_1"></use>
-        </svg>
-      </div>
-    </header>
-
     <div [classList]="'configuration__tableContainer'">
-      <table [classList]="'configuration__table'">
-        <thead>
+      <table [classList]="'configuration__table table table-stripped table-bordered table-sm row-border hover'" datatable [dtOptions]="dtOptions" >
+        <thead [classList]="'thead'">
         <tr>
-          <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
-            <td [classList]="'configuration__table--checkBoxTd'"><input type="checkbox" [classList]="'configuration__table--checkBox user'"></td>
+          <ng-template [ngIf]="( developmentMode !== 'test' )">
+            <th [classList]="'configuration__table--checkBox'" style="width: 1%"><input type="checkbox"></th>
           </ng-template>
-          <td>Property</td>
-          <td>Type Value</td>
-          <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
-            <td>Action</td>
+          <th>Property</th>
+          <th>Type Value</th>
+          <ng-template [ngIf]="( developmentMode !== 'test' )">
+            <th>Action</th>
           </ng-template>
         </tr>
         </thead>
-        <tbody>
-          <tr>
-            <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
-              <td [classList]="'configuration__table--checkBoxTd'"><input type="checkbox" [classList]="'configuration__table--checkBox configure'"></td>
-            </ng-template>
-            <td><input type="text" value="Demo Name" disabled [classList]="'property'"></td>
-            <td><input type="text" value="Demo Name" disabled [classList]="'typeValue'"></td>
-            <ng-template [ngIf]="(userType === 'sa' || userType === 'a')">
-              <td>
-                <div [classList]="'configuration__table--actionContainer'">
-                  <div [classList]="'configuration__table--functionBox'">
-                    <svg [classList]="'configuration__table--svg'">
-                      <use href="assets/edit.svg#Layer_1"></use>
-                    </svg>
-                    <p>Edt</p>
-                  </div>
-                  <div [classList]="'configuration__table--functionBox'">
-                    <svg [classList]="'configuration__table--svg'">
-                      <use href="assets/delete.svg#Layer_1"></use>
-                    </svg>
-                    <p>Dlt</p>
-                  </div>
+        <tbody [classList]="'tbody'">
+        <tr *ngFor="let u of configurationsList;index as i;">
+          <ng-template [ngIf]="( developmentMode !== 'test' )">
+            <td [classList]="'configuration__table--checkBox'"><input type="checkbox"></td>
+          </ng-template>
+          <td>{{u.name}}</td>
+          <td>{{u.configurationName}}</td>
+          <ng-template [ngIf]="( developmentMode !== 'test' )">
+            <td [classList]="'configuration__table--actionContainerTd width'">
+              <div [classList]="'configuration__table--actionContainer'">
+                <div [classList]="'configuration__table--actionBox'">
+                  <svg>
+                    <use href="assets/edit.svg#Layer_1"></use>
+                  </svg>
+                  <p>Edit</p>
                 </div>
-              </td>
-            </ng-template>
-          </tr>
-
+              </div>
+            </td>
+          </ng-template>
+        </tr>
         </tbody>
       </table>
-      <footer [classList]="'configuration__tableContainer--footer'">
-        <div [classList]="'configuration__tableContainer--footerPageDescBox'">
-          <p [classList]="'configuration__tableContainer--footerPageDesc'">
-            Showing <span #from>1</span> to <span #to>8</span> of <span #total>50</span> entries
-          </p>
-        </div>
-        <div [classList]="'configuration__tableContainer--footerPageIndexing'">
-          <p [classList]="'configuration__tableContainer--footerPageTab'">prev</p>
-          <div [classList]="'configuration__tableContainer--footerPageIndexes'">
-            <p [classList]="'configuration__tableContainer--footerPageTab select'">1</p>
-            <p [classList]="'configuration__tableContainer--footerPageTab'">2</p>
-            <p [classList]="'configuration__tableContainer--footerPageTab'">3</p>
-            <p [classList]="'configuration__tableContainer--footerPageTab'">4</p>
-            <p [classList]="'configuration__tableContainer--footerPageTab'">5</p>
-          </div>
-          <p [classList]="'configuration__tableContainer--footerPageTab'">next</p>
-        </div>
-      </footer>
     </div>
 
   </ng-template>
@@ -91,8 +56,7 @@
         </p>
         <input type="text" [classList]="'configuration__form--text typeName'" placeholder="Enter Type Value">
         <div [classList]="'configuration__form--buttonBox'">
-          <button type="submit" [classList]="'configuration__form--button'">Submit</button>
-          <button [classList]="'configuration__form--button'" (click)="changeFunctionality( 'showTable' )">Cancel</button>
+          <button type="submit" [classList]="'configuration__form--button button'">Submit</button>
         </div>
       </div>
     </form>

@@ -6,10 +6,17 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./configuration.component.scss']
 })
 export class ConfigurationComponent implements OnInit {
+  constructor() { }
 
   @Input() userType: string | any;
   currentFunctionality = 'showTable';
-  constructor() { }
+
+  dtOptions: DataTables.Settings = {};
+
+  // tslint:disable-next-line:typedef
+  developmentMode = 'demo';
+  // tslint:disable-next-line:typedef
+  configurationsList: any;
 
   ngOnInit(): void {
   }
@@ -24,7 +31,6 @@ export class ConfigurationComponent implements OnInit {
     // @ts-ignore
     setTimeout( () => document.querySelector('.configuration').classList.remove('select') , 0);
   }
-
   // tslint:disable-next-line:typedef
   showModule(){
     // @ts-ignore

@@ -7,12 +7,15 @@
     <div [classList]="'header__imageBox'">
       <img src="assets/uk-police-logo.jpg" [classList]="'header__imageBox--logo'">
     </div>
-    <div [classList]="'header__userBox'">
+    <div [classList]="'header__userBox'" (click)="isAccountDropdown = !isAccountDropdown">
+      <div [classList]="'header__userBox--imageBox'">
+        <img src="assets/face.jpg" [classList]="'header__userBox--image'">
+      </div>
       <p [classList]="'header__userBox--userName'">Amit Vyas</p>
       <img [classList]="'header__userBox--svg'" src="assets/create_ac_dropdown_png.png">
     </div>
   </header>
-  <div [classList]="'container'">
+  <div [classList]="'container'" (click)="isAccountDropdown = false">
     <!-- ###########################      SIDEBAR        ######################################### -->
     <section [classList]="'sidebar'">
       <p [classList]="'sidebar__heading'"></p>
@@ -22,28 +25,41 @@
         </svg>
         <p>Dashboard</p>
       </div>
-      <div [classList]="'sidebar__module'" (click)="showDropdown('user')">
-        <svg [classList]="'sidebar__module--svg'">
-          <use href="assets/user.svg#Layer_1"></use>
-        </svg>
-        <p>User</p>
-        <img src="assets/create_ac_dropdown_png.png" [classList]="'dropdown'">
-      </div>
-      <div [classList]="'sidebar__moduleDropdown'">
-        <p [classList]="'sidebar__moduleDropdown--func'" (click)="changeModule( 'user', 'showTable',0 )">Show Users</p>
-        <p [classList]="'sidebar__moduleDropdown--func'" (click)="changeModule( 'user', 'addUser',1 )">Add User</p>
-      </div>
-      <div [classList]="'sidebar__module'" (click)="showDropdown('configuration')">
-        <svg [classList]="'sidebar__module--svg'">
-          <use href="assets/configuration.svg#Layer_1"></use>
-        </svg>
-        <p>Configuration</p>
-        <img src="assets/create_ac_dropdown_png.png" [classList]="'dropdown'">
-      </div>
-      <div [classList]="'sidebar__moduleDropdown'">
-        <p [classList]="'sidebar__moduleDropdown--func'" (click)="changeModule( 'configuration', 'showTable',2 )">Show Configurations</p>
-        <p [classList]="'sidebar__moduleDropdown--func'" (click)="changeModule( 'configuration', 'addConfiguration',3 )">Add Configuration</p>
-      </div>
+
+      <ng-template [ngIf]="( userType !== 'u' )">
+        <div [classList]="'sidebar__module'" (click)="showDropdown('user')">
+          <svg [classList]="'sidebar__module--svg'">
+            <use href="assets/user.svg#Layer_1"></use>
+          </svg>
+          <p>User</p>
+          <img src="assets/create_ac_dropdown_png.png" [classList]="'dropdown'">
+        </div>
+      </ng-template>
+
+      <ng-template [ngIf]="( userType !== 'u' )">
+        <div [classList]="'sidebar__moduleDropdown'">
+          <p [classList]="'sidebar__moduleDropdown--func'" (click)="changeModule( 'user', 'showTable',0 )">Show Users</p>
+          <p [classList]="'sidebar__moduleDropdown--func'" (click)="changeModule( 'user', 'addUser',1 )">Add User</p>
+        </div>
+      </ng-template>
+
+      <ng-template [ngIf]="( userType !== 'u' )">
+        <div [classList]="'sidebar__module'" (click)="showDropdown('configuration')">
+          <svg [classList]="'sidebar__module--svg'">
+            <use href="assets/configuration.svg#Layer_1"></use>
+          </svg>
+          <p>Configuration</p>
+          <img src="assets/create_ac_dropdown_png.png" [classList]="'dropdown'">
+        </div>
+      </ng-template>
+
+      <ng-template [ngIf]="( userType !== 'u' )">
+        <div [classList]="'sidebar__moduleDropdown'">
+          <p [classList]="'sidebar__moduleDropdown--func'" (click)="changeModule( 'configuration', 'showTable',2 )">Show Configurations</p>
+          <p [classList]="'sidebar__moduleDropdown--func'" (click)="changeModule( 'configuration', 'addConfiguration',3 )">Add Configuration</p>
+        </div>
+      </ng-template>
+
       <div [classList]="'sidebar__module'" (click)="showDropdown('jacket')">
         <svg [classList]="'sidebar__module--svg'">
           <use href="assets/jacket.svg#Layer_1"></use>
@@ -52,8 +68,10 @@
         <img src="assets/create_ac_dropdown_png.png" [classList]="'dropdown'">
       </div>
       <div [classList]="'sidebar__moduleDropdown'">
-        <p [classList]="'sidebar__moduleDropdown--func'" (click)="changeModule( 'jacket', 'showTable',4 )">Show Jackets</p>
-        <p [classList]="'sidebar__moduleDropdown--func'" (click)="changeModule( 'jacket', 'addJacket',5 )">Add Jacket</p>
+        <ng-template [ngIf]="( userType !== 'u' )">
+          <p [classList]="'sidebar__moduleDropdown--func'" (click)="changeModule( 'jacket', 'showTable',4 )">Show Jackets</p>
+          <p [classList]="'sidebar__moduleDropdown--func'" (click)="changeModule( 'jacket', 'addJacket',5 )">Add Jacket</p>
+        </ng-template>
         <p [classList]="'sidebar__moduleDropdown--func'" (click)="changeModule( 'jacket', 'verifyJacket',6 )">Verify Jacket</p>
       </div>
     </section>
@@ -73,4 +91,11 @@
       </ng-template>
     </section>
   </div>
+
+  <ng-template [ngIf]="(isAccountDropdown)">
+    <div [classList]="'accountDropdown'">
+      <p [classList]="'accountDropdown__paragraph'" (click)="logout()">Logout</p>
+    </div>
+  </ng-template>
+
 </ng-template>

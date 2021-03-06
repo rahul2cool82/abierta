@@ -60,15 +60,11 @@ export class UserComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  createAccount($event: any, name: string, userName: string, email: string, password: string, confirmPassword: string, role: string){
+  createAccount($event: any, name: string, userName: string, email: string, password: string, role: string){
     $event.preventDefault();
     // tslint:disable-next-line:max-line-length
-    if ( name.length === 0 || name.length === 0 || userName.length === 0 || email.length === 0 || password.length === 0 || confirmPassword.length === 0 ){
+    if ( name.length === 0 || name.length === 0 || userName.length === 0 || email.length === 0 || password.length === 0 ){
       return alert('Some Fields are empty');
-    }
-
-    if ( password !== confirmPassword ){
-      return alert('Password not matches');
     }
 
     // @ts-ignore

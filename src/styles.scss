@@ -33,7 +33,9 @@ a{
 }
 
 .dataTables_info{
-  font-size: 0.8vw;
+  font-size: 1.2vw;
+  font-weight: bold;
+  padding-top: 1vw;
 }
 
 .paginate_button{
@@ -72,16 +74,18 @@ table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTa
     line-height: 0 !important;
     width: max-content !important;
     & a.paginate_button{
-      border: 0.05vw solid #000 !important;
-      padding: 0.5vw .5vw !important;
-      font-size: .8vw !important;
+      border: 0.05vw solid #1A5072 !important;
+      padding: 1vw .5vw !important;
+      font-size: 1.2vw !important;
+      font-weight: bold !important;
       display: inline-block !important;
-      min-width: unset !important;
       margin-left: .5vw !important;
+      color: #000 !important;
       &:hover,&.current:hover,&.current,&:focus,&.next:hover{
         border: 0.05vw solid #1A5072 !important;
-        padding: 0.5vw .5vw !important;
-        font-size: .8vw !important;
+        padding: 1vw .5vw !important;
+        font-size: 1.2vw !important;
+        font-weight: bold !important;
         display: inline-block !important;
         margin-left: .5vw !important;
         background: #1A5072 !important;
@@ -93,8 +97,8 @@ table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTa
 
 .dataTables_wrapper .dataTables_paginate .paginate_button{
   border: 0.05vw solid #000 !important;
-  padding: 0.5vw .5vw !important;
-  font-size: .8vw !important;
+  padding: 1vw .5vw !important;
+  font-size: 1.2vw !important;
   display: inline-block !important;
   margin-left: .5vw !important;
 }
@@ -113,7 +117,7 @@ table.dataTable.no-footer{
   float: right !important;
   margin-bottom: 2vh !important;
   & label{
-    font-size: .8vw !important;
+    font-size: 1.2vw !important;
     margin: 0 !important;
   }
   & input{
@@ -124,4 +128,16 @@ table.dataTable.no-footer{
       outline: none !important;
     }
   }
+}
+
+.dataTables_empty{
+  font-size: 1.2vw !important;
+  padding: 0;
+  margin: 0;
+}
+
+.button{
+  width: 10vw !important;
+  font-size: 1.2vw !important;
+  text-align: center !important;
 }
