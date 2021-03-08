@@ -86,6 +86,7 @@ export class JacketComponent implements OnInit {
       ( data: any ) => {
         if ( !data || !data.id ){
           alert('Verification Failed');
+          return;
         }
         alert( 'Jacket Verified' );
       }
