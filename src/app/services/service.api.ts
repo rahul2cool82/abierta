@@ -50,7 +50,7 @@ export class ServiceApi{
     newUser.email = user.email;
     newUser.password = user.password;
     // @ts-ignore
-    newUser.roles[0] = user.userType === 'a' || user.userType === 'sa' ? 'ADMIN' : 'USER';
+    newUser.roles[0] = user.userType === 'a' || user.userType === 'sa' ? 'ADMIN' : 'CLIENT';
     console.log(newUser);
     return this.httpClient.post( serviceAPI + '/users/signup' , newUser);
   }
@@ -65,13 +65,13 @@ export class ServiceApi{
   }
 
   // tslint:disable-next-line:typedef
-  postJacketVerification( jacket: any ){
-    return this.httpClient.post( serviceAPI + '/vest/get/rfids', jacket );
+  postJacketVerification(){
+    return this.httpClient.get( serviceAPI + '/vest/1' );
   }
 
   // tslint:disable-next-line:typedef
   getReadAntenna(){
-    return this.httpClient.get( serviceAPI + '/barmetrics/allien/read/' );
+    return this.httpClient.get( serviceAPI + '/vest/1' );
   }
 
 }

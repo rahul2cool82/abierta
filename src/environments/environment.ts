@@ -7,6 +7,7 @@ export const environment = {
 };
 
 export const serviceAPI = 'http://localhost:7007';
+export const deprecateLink = serviceAPI + '/users/signup';
 
 /*
  * For easier debugging in development mode, you can import the following file

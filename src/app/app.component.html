@@ -19,7 +19,7 @@
     <!-- ###########################      SIDEBAR        ######################################### -->
     <section [classList]="'sidebar'">
       <p [classList]="'sidebar__heading'"></p>
-      <div [classList]="'sidebar__module firstChild'">
+      <div [classList]="'sidebar__module firstChild select'" (click)="changeModule( 'dashboard', 'dashboard', -1 )">
         <svg [classList]="'sidebar__module--svg'">
           <use href="assets/dashboard.svg#Layer_1"></use>
         </svg>

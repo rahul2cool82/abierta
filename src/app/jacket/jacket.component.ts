@@ -50,13 +50,8 @@ export class JacketComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  addJacket( $event: any, rfId1: string, rfId2: string, jacketNo: string ){
+  addJacket( $event: any, rfId1: string, rfId2: string ){
     $event.preventDefault();
-
-    if ( jacketNo.trim().length <= 0 ){
-      alert('Click ReadAntenna Button First');
-      return;
-    }
 
     if ( rfId1.trim().length <= 0 || rfId2.trim().length <= 0 ){
       alert( 'Data not inserted' );
@@ -79,19 +74,31 @@ export class JacketComponent implements OnInit {
 
 
   // tslint:disable-next-line:typedef
-  verifyJacket($event: any, rfId1: string, rfId2: string) {
+  verifyJacket($event: any) {
     $event.preventDefault();
-    const jacket = {
-      rfId1,
-      rfId2
-    };
-    this._service_api.postJacketVerification( jacket ).subscribe(
+    this._service_api.postJacketVerification().subscribe(
       ( data: any ) => {
         if ( !data || !data.id ){
           alert('Verification Failed');
           return;
         }
-        alert( 'Jacket Verified' );
+        const inputFields = document.querySelectorAll('.jacket__form--text.edit');
+        Array.from( inputFields ).forEach( (input, index) => {
+          switch ( index ){
+            case 0:
+              // @ts-ignore
+              input.value = data.id;
+              break;
+            case 1:
+              // @ts-ignore
+              input.value = data.rfId1;
+              break;
+            case 2:
+              // @ts-ignore
+              input.value = data.rfId2;
+              break;
+          }
+        } );
       }
     );
   }
@@ -107,18 +114,26 @@ export class JacketComponent implements OnInit {
           alert('Antenna Service Down');
           return;
         }
-        // @ts-ignore
-        document.querySelector('.jacket__form--textBox.disabled').classList.remove('disabled');
-        // @ts-ignore
-        document.querySelector('.jacket__form--text.add').value = data.id;
-        // @ts-ignore
-        document.querySelector('.jacket__form--text.add:nth-child(2)').value = data.rfId1;
-        // @ts-ignore
-        document.querySelector('.jacket__form--text.add:nth-child(2)').setAttribute('disabled', true);
-        // @ts-ignore
-        document.querySelector('.jacket__form--text.add:nth-child(3)').value = data.rfId2;
-        // @ts-ignore
-        document.querySelector('.jacket__form--text.add:nth-child(3)').setAttribute('disabled', true);
+
+        const inputFields = document.querySelectorAll('.jacket__form--text.add');
+        Array.from( inputFields ).forEach( ( input, index ) => {
+          switch ( index ) {
+            case 0:
+              break;
+            case 1:
+              // @ts-ignore
+              input.value = data.rfId1;
+              // @ts-ignore
+              input.setAttribute('disabled', true);
+              break;
+            case 2:
+              // @ts-ignore
+              input.value = data.rfId2;
+              // @ts-ignore
+              input.setAttribute('disabled', true);
+          }
+        } );
+
         // @ts-ignore
         document.querySelector('.jacket__form--button.button.antennaRead').setAttribute('disabled', true);
       }

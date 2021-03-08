@@ -70,7 +70,7 @@
               <input type="text" [classList]="'jacket__form--text add'" #addRfId2>
             </div>
             <div [classList]="'jacket__form--buttons'">
-              <button [classList]="'jacket__form--button button'" type="submit" (click)="addJacket($event, addRfId1.value, addRfId2.value, jacketNo.value)">Submit</button>
+              <button [classList]="'jacket__form--button button'" type="submit" (click)="addJacket($event, addRfId1.value, addRfId2.value)">Submit</button>
               <button [classList]="'jacket__form--button button antennaRead'" style="background-color: orangered;" (click)="readFromAntenna()">
                 Read Antenna
               </button>
@@ -88,22 +88,22 @@
             <p [classList]="'jacket__form--textTitle'">
               Jacket No.
             </p>
-            <input type="text" [classList]="'jacket__form--text'" disabled #verifyJacketNum>
+            <input type="text" [classList]="'jacket__form--text edit'" disabled>
           </div>
           <div [classList]="'jacket__form--textBox'">
             <p [classList]="'jacket__form--textTitle'">
               Rf ID 1
             </p>
-            <input type="text" [classList]="'jacket__form--text'" #verifyRfId1>
+            <input type="text" [classList]="'jacket__form--text edit'" disabled>
           </div>
           <div [classList]="'jacket__form--textBox'">
             <p [classList]="'jacket__form--textTitle'">
               Rf ID 2
             </p>
-            <input type="text" [classList]="'jacket__form--text'" #verifyRfId2>
+            <input type="text" [classList]="'jacket__form--text edit'" disabled>
           </div>
           <div [classList]="'jacket__form--buttons'">
-            <button [classList]="'jacket__form--button button'" type="submit" (click)="verifyJacket($event,verifyRfId1.value,verifyRfId2.value)">Verify</button>
+            <button [classList]="'jacket__form--button button'" type="submit" (click)="verifyJacket($event)">Verify</button>
           </div>
         </div>
       </div>

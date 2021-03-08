@@ -85,7 +85,9 @@ export class AppComponent {
     setTimeout(
       () => {
         this.currentModule = module;
-        moduleFunctionalities[i].classList.add( 'select' );
+        if ( i !== -1 ) {
+          moduleFunctionalities[i].classList.add( 'select' );
+        }
         setTimeout(
           () => {
             switch (module){
@@ -145,6 +147,8 @@ export class AppComponent {
   showDropdown( dropdown: string ){
     const dropdowns = document.querySelectorAll('.sidebar__moduleDropdown');
     const sidebarModules = document.querySelectorAll('.sidebar__module');
+    // @ts-ignore
+    const isDashboard = sidebarModules[0].classList.contains('select') ? true : false;
     if ( this.currentDropdown === dropdown ){
       console.log('Ehtegvasdhbfkjasdnnflkasdf');
       Array.from( dropdowns ).forEach( (d) => {
@@ -185,6 +189,9 @@ export class AppComponent {
     dropdowns[index].classList.add('select');
     sidebarModules[sideBarIndex].classList.add( 'select' );
     this.currentDropdown = dropdown;
+    if ( isDashboard ){
+      sidebarModules[0].classList.add( 'select' );
+    }
   }
 
   // tslint:disable-next-line:typedef
@@ -211,7 +218,7 @@ export class AppComponent {
           case 'ADMIN':
             this.userType = 'a';
             break;
-          case 'USER':
+          case 'CLIENT':
             this.userType = 'u';
             break;
         }
@@ -276,4 +283,5 @@ export class AppComponent {
     this.getJacketsAll();
     this.changeModule( 'jacket', 'showTable', 4 );
   }
+
 }
