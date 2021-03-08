@@ -9,7 +9,7 @@
             <ng-template [ngIf]="( developmentMode !== 'test' )">
               <th [classList]="'user__table--checkBox'"><input type="checkbox"></th>
             </ng-template>
-            <th>Name</th>
+            <th>ID</th>
             <th>Username</th>
             <th>Email</th>
             <ng-template [ngIf]="( developmentMode !== 'test' )">
@@ -22,8 +22,8 @@
             <ng-template [ngIf]="( developmentMode !== 'test' )">
               <td [classList]="'user__table--checkBox'"><input type="checkbox"></td>
             </ng-template>
-            <td>{{u.name}}</td>
-            <td>{{u.userName}}</td>
+            <td>{{u.id}}</td>
+            <td>{{u.username}}</td>
             <td>{{u.email}}</td>
             <ng-template [ngIf]="( developmentMode !== 'test' )">
               <td [classList]="'user__table--actionContainerTd width'">
@@ -91,9 +91,9 @@
           <img src="assets/role.svg" [classList]="'user__form--inputImage'">
         </div>
         <select [classList]="'user__form--selectBox'" #role>
-          <option value="sa">Super Admin</option>
+          <option value="sa" disabled>Super Admin</option>
           <option value="a">Admin</option>
-          <option value="a">User</option>
+          <option value="a" disabled>User</option>
         </select>
       </div>
 

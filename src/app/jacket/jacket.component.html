@@ -1,5 +1,9 @@
 <div [classList]="'jacket module'">
 
+  <div [classList]="'antenna'">
+    <p [classList]="'antenna__paragraph'">Loading...</p>
+  </div>
+
   <ng-template [ngIf]="( currentFunctionality === 'showTable' )">
     <div [classList]="'jacket__tableContainer'">
       <table [classList]="'jacket__table table table-stripped table-bordered table-sm row-border hover'" datatable [dtOptions]="dtOptions" >
@@ -17,13 +21,13 @@
         </tr>
         </thead>
         <tbody [classList]="'tbody'">
-        <tr *ngFor="let u of jacketsList;index as i;">
+        <tr *ngFor="let j of jacketList;index as i;">
           <ng-template [ngIf]="( developmentMode !== 'test' )">
             <td [classList]="'jacket__table--checkBox'"><input type="checkbox"></td>
           </ng-template>
-          <td>{{u.name}}</td>
-          <td>{{u.jacketName}}</td>
-          <td>{{u.email}}</td>
+          <td>{{j.id}}</td>
+          <td>{{j.rfId1}}</td>
+          <td>{{j.rfId2}}</td>
           <ng-template [ngIf]="( developmentMode !== 'test' )">
             <td [classList]="'jacket__table--actionContainerTd width'">
               <div [classList]="'jacket__table--actionContainer'">
@@ -47,29 +51,29 @@
       <form [classList]="'jacket__form'">
         <div [classList]="'jacket__form--container'">
           <div [classList]="'jacket__form--subContainer'">
-            <p [classList]="'jacket__form--readAntenna button'">
-              Read Antenna
-            </p>
-            <div [classList]="'jacket__form--textBox'">
+            <div [classList]="'jacket__form--textBox disabled'">
               <p [classList]="'jacket__form--textTitle'">
-                Jacket No.
+                Jacket No
               </p>
-              <input type="text" [classList]="'jacket__form--text'" disabled #addRfId1>
+              <input type="text" [classList]="'jacket__form--text add'" #jacketNo disabled>
             </div>
             <div [classList]="'jacket__form--textBox'">
               <p [classList]="'jacket__form--textTitle'">
                 Rf ID 1
               </p>
-              <input type="text" [classList]="'jacket__form--text'" #addRfId1>
+              <input type="text" [classList]="'jacket__form--text add'" #addRfId1>
             </div>
             <div [classList]="'jacket__form--textBox'">
               <p [classList]="'jacket__form--textTitle'">
                 Rf ID 2
               </p>
-              <input type="text" [classList]="'jacket__form--text'" #addRfId2>
+              <input type="text" [classList]="'jacket__form--text add'" #addRfId2>
             </div>
             <div [classList]="'jacket__form--buttons'">
-              <button [classList]="'jacket__form--button button'" type="submit">Submit</button>
+              <button [classList]="'jacket__form--button button'" type="submit" (click)="addJacket($event, addRfId1.value, addRfId2.value, jacketNo.value)">Submit</button>
+              <button [classList]="'jacket__form--button button antennaRead'" style="background-color: orangered;" (click)="readFromAntenna()">
+                Read Antenna
+              </button>
             </div>
           </div>
         </div>
@@ -80,14 +84,11 @@
     <form [classList]="'jacket__form'">
       <div [classList]="'jacket__form--container'">
         <div [classList]="'jacket__form--subContainer'">
-          <p [classList]="'jacket__form--readAntenna button'">
-            Read Antenna
-          </p>
           <div [classList]="'jacket__form--textBox'">
             <p [classList]="'jacket__form--textTitle'">
               Jacket No.
             </p>
-            <input type="text" [classList]="'jacket__form--text'" disabled #verifyRfId1>
+            <input type="text" [classList]="'jacket__form--text'" disabled #verifyJacketNum>
           </div>
           <div [classList]="'jacket__form--textBox'">
             <p [classList]="'jacket__form--textTitle'">
@@ -102,7 +103,7 @@
             <input type="text" [classList]="'jacket__form--text'" #verifyRfId2>
           </div>
           <div [classList]="'jacket__form--buttons'">
-            <button [classList]="'jacket__form--button button'" type="submit">Verify</button>
+            <button [classList]="'jacket__form--button button'" type="submit" (click)="verifyJacket($event,verifyRfId1.value,verifyRfId2.value)">Verify</button>
           </div>
         </div>
       </div>

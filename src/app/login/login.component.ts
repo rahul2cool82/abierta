@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   loginUser($event: any, userName: string, password: string){
+    localStorage.removeItem('token');
     $event.preventDefault();
     // tslint:disable-next-line:no-unused-expression
     this._service_api.postLoginAccount({username: userName, password}).

@@ -217,6 +217,9 @@
       width: 100%;
       justify-content: space-between;
       margin-bottom: 2vh;
+      &.disabled{
+        display: none;
+      }
     }
     &--textTitle{
       font-size: 1vw;
@@ -232,6 +235,7 @@
     &--buttons{
       display: flex;
       align-items: center;
+      justify-content: flex-end;
     }
     &--button{
       padding: .75vw 1.25vw;
@@ -239,12 +243,39 @@
       border: 0;
       background-color: #1A5072;
       color: #fff;
-      margin-right: 2vw;
+      margin-left: 2vw;
       cursor: pointer;
       font-size: 1vw;
       &.cancel{
         background-color: orangered;
       }
     }
+  }
+}
+
+.antenna{
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+  background-color: transparent;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  &.select{
+    display: flex;
+  }
+  &__paragraph{
+    font-size: 1.2vw;
+    color: #fff;
+    width: 50vw;
+    padding: 3vw;
+    height: 20vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1A5072;
+    color: #fff;
+    font-weight: bold;
   }
 }

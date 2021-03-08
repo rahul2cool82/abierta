@@ -16,12 +16,12 @@
         </tr>
         </thead>
         <tbody [classList]="'tbody'">
-        <tr *ngFor="let u of configurationsList;index as i;">
+        <tr *ngFor="let c of configurationList;index as i;">
           <ng-template [ngIf]="( developmentMode !== 'test' )">
             <td [classList]="'configuration__table--checkBox'"><input type="checkbox"></td>
           </ng-template>
-          <td>{{u.name}}</td>
-          <td>{{u.configurationName}}</td>
+          <td>{{c.confKey}}</td>
+          <td>{{c.confValue}}</td>
           <ng-template [ngIf]="( developmentMode !== 'test' )">
             <td [classList]="'configuration__table--actionContainerTd width'">
               <div [classList]="'configuration__table--actionContainer'">
@@ -50,13 +50,13 @@
         <p [classList]="'configuration__form--title'">
           Property
         </p>
-        <input type="text" [classList]="'configuration__form--text property'" placeholder="Enter Property Name">
+        <input type="text" [classList]="'configuration__form--text property'" placeholder="Enter Property Name" #confKey>
         <p [classList]="'configuration__form--title'">
           Type Value
         </p>
-        <input type="text" [classList]="'configuration__form--text typeName'" placeholder="Enter Type Value">
+        <input type="text" [classList]="'configuration__form--text typeName'" placeholder="Enter Type Value" #confValue>
         <div [classList]="'configuration__form--buttonBox'">
-          <button type="submit" [classList]="'configuration__form--button button'">Submit</button>
+          <button type="submit" [classList]="'configuration__form--button button'" (click)="addConfiguration( $event, confKey.value, confValue.value )">Submit</button>
         </div>
       </div>
     </form>

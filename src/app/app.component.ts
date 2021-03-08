@@ -20,17 +20,24 @@ export class AppComponent {
   token = '';
   // tslint:disable-next-line:variable-name
   constructor(private _service_api: ServiceApi) {
-    this.getAllUsers();
+    if ( localStorage.getItem( 'token' ) ){
+      this.getUserMe();
+    }
   }
 
   // exchangeable variables
-  userType = 'sa';
+  userType = '';
   usersList = [];
+  jacketsList = [];
+  configurationList = [];
+  userID = -1;
+  userName = '';
+  userEmail = '';
   // global screen variables
   currentScreen = 'login';
   currentModule = '';
   isModuleChanged = true;
-  developmentMode = 't';
+  developmentMode = 'test';
   currentDropdown = '';
   currentModuleFunc = -1;
   isAccountDropdown = false;
@@ -113,28 +120,27 @@ export class AppComponent {
     if ( this.userType === 'u' ){
       return;
     }
-    this._service_api.getGettingAllUsers(this.token)
-      .then( ( data ) => {
-        this.usersList = data;
-      } );
   }
 
-  // tslint:disable-next-line:typedef
-  getNewUserList( data: string ){
-    const jsonData = JSON.parse( data );
-    this.usersList = jsonData;
-  }
   // tslint:disable-next-line:typedef
   getTokenFromLoginScreen( data: string ){
     if ( data === null || data === undefined ) {
       return;
     }
     const jsonData = JSON.parse( data );
+    if ( !jsonData.token ){
+      // token is unavailable
+      return;
+    }
     this.token = jsonData.token;
     localStorage.setItem( 'token', this.token );
-    console.log('Token after login: %s', this.token);
     this.currentScreen = 'dashboard';
+
+    // now token is available get user me
+    this.getUserMe();
+
   }
+
   // tslint:disable-next-line:typedef
   showDropdown( dropdown: string ){
     const dropdowns = document.querySelectorAll('.sidebar__moduleDropdown');
@@ -185,5 +191,89 @@ export class AppComponent {
   logout(){
     localStorage.removeItem('token');
     this.currentScreen = 'login';
+  }
+
+  // @ts-ignore
+  // tslint:disable-next-line:typedef
+  getUserMe() {
+    this._service_api.getUserMe().subscribe(
+      ( data: string | any ) => {
+        if ( !data ){
+          return;
+        }
+        console.log(data);
+        const dataJson = data;
+        this.userID = dataJson.id;
+        this.userName = dataJson.username;
+        this.userEmail = dataJson.email;
+        this.currentScreen = 'dashboard';
+        switch ( dataJson.roles[0] ){
+          case 'ADMIN':
+            this.userType = 'a';
+            break;
+          case 'USER':
+            this.userType = 'u';
+            break;
+        }
+        this.getUsersAll();
+        this.getJacketsAll();
+        this.getConfigurationAll();
+      }
+    );
+  }
+
+  // tslint:disable-next-line:typedef
+  getUsersAll() {
+    if ( this.userType === 'u' ){
+      return;
+    }
+    this._service_api.getUsersAll().subscribe(
+      ( data: any ) => {
+        this.usersList = data;
+      }
+    );
+  }
+
+  // tslint:disable-next-line:typedef
+  getJacketsAll(){
+    if ( this.userType === 'u' ){
+      return;
+    }
+    this._service_api.getJacketList().subscribe(
+      ( data: any ) => {
+        console.log(data);
+        this.jacketsList = data;
+      }
+    );
+  }
+
+  // tslint:disable-next-line:typedef
+  getConfigurationAll() {
+    if ( this.userType === 'u' ){
+      return;
+    }
+    this._service_api.getConfigurationList().subscribe(
+      ( data: any ) => {
+        this.configurationList = data;
+      }
+    );
+  }
+
+  // tslint:disable-next-line:typedef
+  userChildEmitter() {
+    this.getUsersAll();
+    this.changeModule('user', 'showTable', 0);
+  }
+
+  // tslint:disable-next-line:typedef
+  configurationChildEmitter() {
+    this.getConfigurationAll();
+    this.changeModule( 'configuration', 'showTable', 2 );
+  }
+
+  // tslint:disable-next-line:typedef
+  jacketChildEmitter(){
+    this.getJacketsAll();
+    this.changeModule( 'jacket', 'showTable', 4 );
   }
 }

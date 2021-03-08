@@ -14,6 +14,8 @@ export class UserComponent implements OnInit {
   @Input() usersList: any[] = [];
   @Input() token: string | undefined;
   @Input() developmentMode: string | undefined;
+
+  @Output() appEmitter = new EventEmitter();
   //
   newUser: User | undefined;  // this variable should be used for adding new user
   currentFunctionality = 'showTable';
@@ -32,13 +34,6 @@ export class UserComponent implements OnInit {
       pageLength : 8,
       processing : true
     };
-    if ( this.currentFunctionality === 'showTable' ){
-      this._service_api.getUserMe( this.token ).subscribe(
-        ( data ) => {
-          console.log( 'Getting User Me : %o', data );
-        }
-      );
-    }
   }
   // tslint:disable-next-line:typedef
   changeFunctionality( functionality: string ){
@@ -77,12 +72,17 @@ export class UserComponent implements OnInit {
     this.newUser?.password = password;
     // @ts-ignore
     this.newUser?.userType = role;
-
-    this._service_api.postCreateAccount(this.newUser)
-      .subscribe(
-        ( data ) => {
-          console.log('Create Response : %o', data);
+    this._service_api.postCreateAccount( this.newUser )?.subscribe(
+      ( data: any ) => {
+        // code for adding the user
+        if ( !data ){
+          alert( 'account not stored' );
+          return;
         }
-      );
+        alert( 'account added' );
+        this.appEmitter.emit(true);
+      }
+    );
+
   }
 }
