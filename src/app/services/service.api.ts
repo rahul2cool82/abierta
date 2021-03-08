@@ -51,6 +51,7 @@ export class ServiceApi{
     newUser.password = user.password;
     // @ts-ignore
     newUser.roles[0] = user.userType === 'a' || user.userType === 'sa' ? 'ADMIN' : 'USER';
+    console.log(newUser);
     return this.httpClient.post( serviceAPI + '/users/signup' , newUser);
   }
 

@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import { ServiceApi } from './services/service.api';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {UserComponent} from './user/user.component';
@@ -18,6 +18,7 @@ export class AppComponent {
   @ViewChild( JacketComponent ) jacketChild: JacketComponent | undefined;
 
   token = '';
+  title = '';
   // tslint:disable-next-line:variable-name
   constructor(private _service_api: ServiceApi) {
     if ( localStorage.getItem( 'token' ) ){
@@ -44,7 +45,6 @@ export class AppComponent {
   // change module function
   // tslint:disable-next-line:typedef
   changeModule( module: string, functionality: string, i: number ){
-    console.log('idhr : %s', module);
     const moduleFunctionalities = document.querySelectorAll('.sidebar__moduleDropdown--func');
     if ( this.currentModuleFunc === i ){
       return;

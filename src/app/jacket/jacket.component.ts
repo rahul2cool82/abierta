@@ -37,10 +37,13 @@ export class JacketComponent implements OnInit {
   hideModule(){
     console.log('Hide Called');
     // @ts-ignore
+    document.querySelector('.antenna').classList.remove('select');
+    // @ts-ignore
     setTimeout( () => document.querySelector('.jacket').classList.remove('select') , 0);
   }
   // tslint:disable-next-line:typedef
   showModule(){
+    // @ts-ignore
     console.log('Show Called');
     // @ts-ignore
     setTimeout( () => document.querySelector('.jacket').classList.add('select') , 0);
